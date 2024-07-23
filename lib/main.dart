@@ -1,10 +1,13 @@
 import 'dart:async';
 
 import 'package:agro_tech/layout.dart';
+import 'package:agro_tech/register_page.dart';
 import 'package:agro_tech/tabs/homeTab.dart';
 import 'package:agro_tech/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+
+import 'login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -48,10 +51,10 @@ class _SplashState extends State<Splash> {
       backgroundColor: Colors.green,
       nextScreen:LayoutBuilder(
         builder: (context, constraints) {
-          if(isLoggedIn = true) {
-            return Layout();
-          }
-          return WelcomePage();
+          if(!isLoggedIn)
+            return LoginPage();
+          return Layout();
+
         },
       ),
       splash: null,
