@@ -1,4 +1,5 @@
 import 'package:agro_tech/tabs/homeTab.dart';
+import 'package:agro_tech/tabs/soilHealthTab.dart';
 import 'package:agro_tech/tabs/weatherTab.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class _LayoutState extends State<Layout> {
   final List<Widget> _pages = [
     HomeTab(),
     WeatherTab(title: 'erp',),
-    // SoilHealthTab(),
+    SoilHealthTab(title: 'efef''',),
     // CropHealthTab()
   ];
 
