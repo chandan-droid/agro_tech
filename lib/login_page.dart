@@ -4,12 +4,18 @@ import 'package:flutter/material.dart';
 import 'layout.dart';
 
 class LoginPage extends StatefulWidget{
+  const LoginPage({super.key,required this.isFarmer});
+  final bool isFarmer;
+
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +45,10 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   const SizedBox(height: 50),
                   CircleAvatar(
-                    radius: 40,
-                    child: Image.asset("lib/assets/farmer.png"),
-                  ),
+                      radius: 40,
+                      child: Image.asset("lib/assets/farmer.png"),
+                    ),
+
                   const SizedBox(height: 50),
                   Form(
                     key: _formKey,

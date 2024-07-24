@@ -48,9 +48,11 @@ class _SplashState extends State<Splash> {
     super.initState();
     Timer(Duration(seconds: 3), () {
      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-       if(!isLoggedIn)
-               return WelcomePage();
-       return Layout();
+       if(!isLoggedIn) {
+         isLoggedIn = true;
+          return WelcomePage();
+        } else{
+         return Layout();}
      }
      ));
     });
@@ -80,23 +82,21 @@ class _SplashState extends State<Splash> {
         ],
       )
     );
-    //   AnimatedSplashScreen(
-    //   splash: "lib/assets/splash.png",
-    //   splashIconSize:10000,
-    //   animationDuration: Duration(seconds: 1),
-    //   splashTransition: SplashTransition.scaleTransition,
-    //   backgroundColor: Colors.black,
-    //   nextScreen:LayoutBuilder(
-    //     builder: (context, constraints) {
-    //       if(!isLoggedIn)
-    //         return LoginPage();
-    //       return Layout();
-    //
-    //     },
-    //   ),
-    // );
   }
 }
+
+
+// Future<void> directToHomePageIfLoggedIn(BuildContext context) async {
+//   final prefs = await SharedPreferences.getInstance();
+//   final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+//
+//   if (isLoggedIn) {
+//     Navigator.pushReplacement(
+//       context,
+//       MaterialPageRoute(builder: (context) => HomePage()),
+//     );
+//   }
+// }
 
 
 

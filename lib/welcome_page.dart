@@ -24,13 +24,13 @@ class _WelcomePageState extends State<WelcomePage> {
           children: [
             Text("Welcome!",style: TextStyle(color: Color(0xff4A6B3E),fontSize: 40,fontWeight: FontWeight.bold),),
             CircleAvatar(
-              radius: 80,
+              radius: 40,
               child: Image.asset("lib/assets/farmer.png"),
             ),
             InkWell(
               onTap: (){
                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-                  return LoginPage();
+                  return LoginPage(isFarmer: true,);
                 }));
               },
               child: Container(
@@ -49,7 +49,13 @@ class _WelcomePageState extends State<WelcomePage> {
               radius: 40,
               child: Image.asset("lib/assets/consumer.png"),
             ),
-            Container(
+        InkWell(
+          onTap: (){
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+              return LoginPage(isFarmer: false,);
+            }));
+          },
+          child: Container(
               decoration: BoxDecoration(
                   color: Color(0xff4A6B3E),
                   borderRadius: BorderRadius.circular(15)
@@ -58,6 +64,7 @@ class _WelcomePageState extends State<WelcomePage> {
               width: 300,
               child: Center(child: Text("Login as consumer",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold))),
             ),
+          )
           ],
         ),
       )
