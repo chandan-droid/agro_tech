@@ -1,6 +1,8 @@
 import 'package:agro_tech/register_page.dart';
 import 'package:flutter/material.dart';
 
+import 'layout.dart';
+
 class LoginPage extends StatefulWidget{
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -94,7 +96,10 @@ class _LoginPageState extends State<LoginPage> {
                           child: ElevatedButton(
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
-
+                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+                                  return Layout();
+                                }
+                                ));
                               }
                             },
                             style: ElevatedButton.styleFrom(

@@ -6,10 +6,15 @@ import 'package:agro_tech/tabs/homeTab.dart';
 import 'package:agro_tech/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'login_page.dart';
 
-void main() {
+void main () async {
+  // WidgetsBinding widgetsBinding =WidgetsFlutterBinding.ensureInitialized();
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  // await Future.delayed(Duration(seconds: 2));
+  // FlutterNativeSplash.remove();
   runApp(const MyApp());
 }
 
@@ -22,11 +27,6 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Agro Tech',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green.shade900),
-        useMaterial3: true,
-      ),
       home:Splash(),
     );
 
@@ -44,21 +44,57 @@ class _SplashState extends State<Splash> {
   bool isExistingUser = true;
 
   @override
-  Widget build(BuildContext context) {
-    return AnimatedSplashScreen(
-      animationDuration: Duration(seconds: 2),
-      splashTransition: SplashTransition.fadeTransition,
-      backgroundColor: Colors.green,
-      nextScreen:LayoutBuilder(
-        builder: (context, constraints) {
-          if(!isLoggedIn)
-            return LoginPage();
-          return Layout();
+  void initState(){
+    super.initState();
+    Timer(Duration(seconds: 3), () {
+     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+       if(!isLoggedIn)
+               return WelcomePage();
+       return Layout();
+     }
+     ));
+    });
 
-        },
-      ),
-      splash: null,
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+    return    Scaffold(
+      body: Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height,
+            width:MediaQuery.of(context).size.width ,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("lib/assets/splash.png"),
+                    fit: BoxFit.fill
+                )
+            ),
+          ),
+          Positioned(
+            top: MediaQuery.of(context).size.height * 0.2,
+              child: Text("AgroTech",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800,fontSize: 70),)),
+        ],
+      )
     );
+    //   AnimatedSplashScreen(
+    //   splash: "lib/assets/splash.png",
+    //   splashIconSize:10000,
+    //   animationDuration: Duration(seconds: 1),
+    //   splashTransition: SplashTransition.scaleTransition,
+    //   backgroundColor: Colors.black,
+    //   nextScreen:LayoutBuilder(
+    //     builder: (context, constraints) {
+    //       if(!isLoggedIn)
+    //         return LoginPage();
+    //       return Layout();
+    //
+    //     },
+    //   ),
+    // );
   }
 }
 

@@ -1,3 +1,4 @@
+import 'package:agro_tech/login_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -23,17 +24,24 @@ class _WelcomePageState extends State<WelcomePage> {
           children: [
             Text("Welcome!",style: TextStyle(color: Color(0xff4A6B3E),fontSize: 40,fontWeight: FontWeight.bold),),
             CircleAvatar(
-              radius: 40,
+              radius: 80,
               child: Image.asset("lib/assets/farmer.png"),
             ),
-            Container(
-                  decoration: BoxDecoration(
-                      color: Color(0xff4A6B3E),
-                      borderRadius: BorderRadius.circular(15)
-                  ),
-                  height:40 ,
-                  width: 300,
-                  child: Center(child: Text("Login as farmer",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold))),
+            InkWell(
+              onTap: (){
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+                  return LoginPage();
+                }));
+              },
+              child: Container(
+                    decoration: BoxDecoration(
+                        color: Color(0xff4A6B3E),
+                        borderRadius: BorderRadius.circular(15)
+                    ),
+                    height:40 ,
+                    width: 300,
+                    child: Center(child: Text("Login as farmer",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold))),
+              ),
             ),
 
 

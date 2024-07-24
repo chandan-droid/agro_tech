@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:agro_tech/layout.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
 import 'language_page.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -130,9 +128,9 @@ class _RegisterPageState extends State<RegisterPage> {
                             child: ElevatedButton(
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
-                                  Navigator.push(
+                                  Navigator.pushReplacement(
                                       context,
-                                      MaterialPageRoute(builder: (builder) => LanguagePage()));
+                                      MaterialPageRoute(builder: (builder) => Layout()));
 
                                 }
                               },

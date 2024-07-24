@@ -13,23 +13,15 @@ class _LanguagePageState extends State<LanguagePage> {
         title: Text('AgroTech'),
       ),
       body: GridView.count(
-        // Number of columns
         crossAxisCount: 2,
-        // Spacing between the grid items
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        // How the grid items are placed (vertical or horizontal)
+        crossAxisSpacing: 2,
+        mainAxisSpacing: 2,
         scrollDirection: Axis.vertical,
-        // The items in the grid
-        children: List.generate(10, (index) {
-          return Center(
-            child: Text(
-              'Item $index',
-              style: TextStyle(fontSize: 20),
-            ),
-          );
-        }),
-      )
+        children:[
+
+        ]
+      ),
+
     );
   }
 }

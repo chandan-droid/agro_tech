@@ -14,7 +14,7 @@ class _LayoutState extends State<Layout> {
   var currentIndex = 0;
   final List<Widget> _pages = [
     HomeTab(),
-    WeatherTab(),
+    WeatherTab(title: 'erp',),
     // SoilHealthTab(),
     // CropHealthTab()
   ];
@@ -29,7 +29,7 @@ class _LayoutState extends State<Layout> {
         .of(context)
         .size
         .height;
-    return SafeArea(
+     return SafeArea(
         child:DefaultTabController(
 
       length: 3,
@@ -46,30 +46,25 @@ class _LayoutState extends State<Layout> {
           ),
         ),
         bottomNavigationBar: NavigationBar(
+          backgroundColor: const Color(0xff4A6B3E),
           height: MediaQuery.of(context).size.height*0.08,
+          indicatorColor: Colors.transparent,
           selectedIndex: currentIndex,
           onDestinationSelected: (index){
             setState(() {
               currentIndex=index;
             });
           },
-          indicatorColor: Colors.black12,
           destinations: const [
-
-            NavigationDestination(icon:Icon(Icons.home),
-                selectedIcon:Icon(Icons.chat) ,
-                label: 'chat'),
-            NavigationDestination(icon:Icon(Icons.update_outlined),
-                selectedIcon:Icon(Icons.update_rounded,) ,
-                label: 'updates'),
-            NavigationDestination(icon:Icon(Icons.people_outline),
-                selectedIcon: Icon(Icons.people),
-                label: 'community'),
+            NavigationDestination(icon:ImageIcon(AssetImage("lib/assets/icons/Home.png"),color: Colors.white,),
+                label: 'Home'),
+            NavigationDestination(icon:ImageIcon(AssetImage("lib/assets/icons/Cloud.png"),color: Colors.white,),
+                label: 'Weather'),
+            NavigationDestination(icon:ImageIcon(AssetImage("lib/assets/icons/Leaf.png"),color: Colors.white,),
+                label: 'Soil Health'),
             NavigationDestination(icon:Icon(Icons.call_outlined),
-                selectedIcon: Icon(Icons.call),
-                label: 'calls'),
+                label: 'Crop Advisory'),
           ],
-          labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
         ),
       ) ,
     ) );
