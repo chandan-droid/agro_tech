@@ -10,6 +10,7 @@ class HomeTab extends StatefulWidget{
 }
 
 class _HomeTabState extends State<HomeTab> {
+  String userName = "user";
   final ScrollController _scrollController = ScrollController();
   double _opacity = 1.0; // Initial opacity
 
@@ -98,55 +99,49 @@ class _HomeTabState extends State<HomeTab> {
         ],
       ),
       extendBodyBehindAppBar: true,
-      body:  Stack(
-          alignment: Alignment.topCenter,
-          children: [
-            Column(
-              children: [
-                SizedBox(height:screenHeight*0.15,),
-                Image.asset(
-                  'lib/assets/homepage.png',
-                  width: screenWidth,
-                ),
-              ],
-            ),
+      body:  Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: SingleChildScrollView(
+          controller: _scrollController,
+          child: Column(
+            children: [
+              SizedBox(height:screenHeight*0.15,),
+              Align(alignment: Alignment.topLeft,
+                  child: Text("Cultivate",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),)),
 
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: SingleChildScrollView(
-                controller: _scrollController,
+              Image.asset(
+                'lib/assets/homepage.png',
+                width: screenWidth,
+              ),
+              const SizedBox(height:10),
+              _buildSection(
+                title: 'Soil Moisture Content',
+                imageUrl: 'lib/assets/realtime weather.png',
+              ),
+              _buildSection(
+                title: 'pH Levels',
+                imageUrl: 'lib/assets/home soil health.png',
+              ),
+              _buildSection(
+                title: 'Crop Advisory',
+                imageUrl:"lib/assets/crop advisory.png",
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height:260),
-                    _buildSection(
-                      title: 'Soil Moisture Content',
-                      imageUrl: 'lib/assets/realtime weather.png',
-                    ),
-                    _buildSection(
-                      title: 'pH Levels',
-                      imageUrl: 'lib/assets/home soil health.png',
-                    ),
-                    _buildSection(
-                      title: 'Crop Advisory',
-                      imageUrl:"lib/assets/crop advisory.png",
-                    ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Cultivate",style: TextStyle(fontSize: 30,fontWeight: FontWeight.w600),),
-                          Text("with Love !",style: TextStyle(fontSize: 30,fontWeight: FontWeight.w600)),
+                    Text("Cultivate",style: TextStyle(fontSize: 30,fontWeight: FontWeight.w600),),
+                    Text("with Love !",style: TextStyle(fontSize: 30,fontWeight: FontWeight.w600)),
 
-                          Text("Made with with ❤️ by AgroTech"),
+                    Text("Made with with ❤️ by AgroTech"),
 
-                        ],
-                      ),
-                    )
                   ],
                 ),
-              ),
-            ),]
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
