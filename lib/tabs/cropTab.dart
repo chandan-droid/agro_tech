@@ -1,6 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../colors.dart';
+import '../constants.dart';
 
 
 
@@ -14,7 +15,24 @@ class CropTab extends StatefulWidget {
 }
 
 class _CropTabState extends State<CropTab> {
+  final _formKey = GlobalKey<FormState>();
   final String location = "S Block 17, Bodhanga, Cuttack-08..";
+  final _cropController = TextEditingController();
+  final _npkController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _cropController.text = 'John Doe'; // Pre-fill from your data source
+    _npkController.text = 'john.doe@example.com';
+  }
+
+  @override
+  void dispose() {
+    _cropController.dispose();
+    _npkController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,80 +59,115 @@ class _CropTabState extends State<CropTab> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Top Crop Picker',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+              Align(alignment: Alignment.center,
+                child: Text(
+                  'Top Crop Picker',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               SizedBox(height: 16),
-              Row(
+              Form(
+                key: _formKey,
+                  child: Column(
                 children: [
-                  Expanded(
-                    child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
-                        labelText: 'Selected Crop',
+                  Row(
+                    children: [
+                      Expanded(
+                        child: DropdownButtonFormField<String>(
+
+                          decoration: InputDecoration(
+                            labelText: 'Selected Crop',
+                          ),
+                          items: crops
+                              .map((e) => DropdownMenuItem(
+                            value: e,
+                            child: Text(e),
+                          ))
+                              .toList(),
+                          onChanged: (value) {},
+                        ),
                       ),
-                      items: ['Crop 1', 'Crop 2', 'Crop 3']
-                          .map((e) => DropdownMenuItem(
-                        value: e,
-                        child: Text(e),
-                      ))
-                          .toList(),
-                      onChanged: (value) {},
-                    ),
+                      SizedBox(width: 16),
+                      Expanded(
+                          child: TextFormField(
+                            controller: _npkController,
+                            decoration: InputDecoration(
+                              labelText: 'NPK Values',
+                            ),
+
+                          )
+                      ),
+                    ],
                   ),
-                  SizedBox(width: 16),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Text('NPK Values'),
-                    ),
+                  SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Expanded(
+                          child: TextFormField(
+                            controller: _cropController,
+                            decoration: InputDecoration(
+                              labelText: 'pH Level',
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your email';
+                              }
+                              return null;
+                            },
+
+                          )
+                      ),
+                      SizedBox(width: 16),
+                      Expanded(
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                              labelText: 'Soil Moisture',
+                            ),
+
+                          )
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Expanded(
+                          child: TextFormField(
+
+                            decoration: const InputDecoration(
+                              labelText: 'Temperature',
+                            ),
+
+                          )
+                      ),
+                      SizedBox(width: 16),
+                      Expanded(
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                              labelText: 'Humidity',
+                            ),
+
+                          )
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        // Process form data (e.g., send to a server)
+                        print('Name: ${_cropController.text}');
+                        print('Email: ${_npkController.text}');
+                      }
+
+                    },
+                    child: Text('Auto-fill Data'),
                   ),
                 ],
-              ),
-              SizedBox(height: 16),
-              Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Text('pH Level'),
-                    ),
-                  ),
-                  SizedBox(width: 16),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Text('Soil Moisture'),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 16),
-              Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Text('Temperature'),
-                    ),
-                  ),
-                  SizedBox(width: 16),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Text('Humidity'),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text('Auto-fill Data'),
-              ),
+              )),
               SizedBox(height: 32),
               Text(
                 'Crops Recommendation List',
@@ -182,7 +235,7 @@ class _CropTabState extends State<CropTab> {
                 decoration: InputDecoration(
                   labelText: 'State Name',
                 ),
-                items: ['State 1', 'State 2', 'State 3']
+                items: ['Odisha', 'West bengle']
                     .map((e) => DropdownMenuItem(
                   value: e,
                   child: Text(e),
@@ -195,7 +248,7 @@ class _CropTabState extends State<CropTab> {
                 decoration: InputDecoration(
                   labelText: 'Selected Crop',
                 ),
-                items: ['Crop 1', 'Crop 2', 'Crop 3']
+                items: crops
                     .map((e) => DropdownMenuItem(
                   value: e,
                   child: Text(e),
@@ -212,7 +265,11 @@ class _CropTabState extends State<CropTab> {
               SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {},
-                child: Text('Season: Spring'),
+                child: TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Expected Production (tons)',
+                  ),
+                ),
               ),
               SizedBox(height: 32),
               Text(
@@ -223,6 +280,7 @@ class _CropTabState extends State<CropTab> {
                 ),
               ),
               SizedBox(height: 16),
+
             ],
           ),
         ),

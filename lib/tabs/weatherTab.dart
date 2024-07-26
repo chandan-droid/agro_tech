@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../colors.dart';
+import '../constants.dart';
 
 
 class WeatherTab extends StatefulWidget {
@@ -15,7 +15,7 @@ class WeatherTab extends StatefulWidget {
 }
 
 class _WeatherTabState extends State<WeatherTab> {
-  final String location = "S Block 17, Bodhanga, Cuttack-08..";
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context ).size.width;
@@ -40,7 +40,7 @@ class _WeatherTabState extends State<WeatherTab> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topLeft,
+            begin: Alignment.topRight,
             end: Alignment.bottomRight,
             colors: [
               themeColor, // Start color
@@ -66,7 +66,7 @@ class _WeatherTabState extends State<WeatherTab> {
                 Container(
                   padding: const EdgeInsets.all(18),
                   decoration: BoxDecoration(
-                    color: themeColor3,
+                    color: themeColor3.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: const Row(
@@ -142,11 +142,12 @@ class _WeatherTabState extends State<WeatherTab> {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: themeColor2,
+                          backgroundColor: themeColor.withOpacity(0.4),
                           padding: EdgeInsets.symmetric(
                             vertical: 16,
                           ),
                           textStyle: TextStyle(
+                            color: Colors.black,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
@@ -162,7 +163,7 @@ class _WeatherTabState extends State<WeatherTab> {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: themeColor2,
+                          backgroundColor: themeColor3,
                           padding: EdgeInsets.symmetric(
                             vertical: 16,
                           ),
@@ -182,7 +183,7 @@ class _WeatherTabState extends State<WeatherTab> {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: themeColor2,
+                          backgroundColor: themeColor3,
                           padding: EdgeInsets.symmetric(
                             vertical: 16,
                           ),
@@ -201,313 +202,63 @@ class _WeatherTabState extends State<WeatherTab> {
                 ),
                 const SizedBox(height: 16),
 
+                Row(
+                  children: [
                     CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Air.png")) ,
                         parameter:"wind speed" ,
                         value:"12" ,
                         unit:"Km/hr" ),
-                      CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Humidity.png")) ,
-                          parameter: "precipitation",
-                          value:"86" ,
-                          unit: "%"),
-                    // CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Sun.png")) ,
-                    //     parameter:"Sunrise/Sunset" ,
-                    //     value: "6:03/17:34",
-                    //   unit: "",
-                    // ),
-                    // CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Humidity.png")) ,
-                    //     parameter: "Humidity",
-                    //     value:"60" ,
-                    //     unit: "%"),
+                    SizedBox(width: 16,),
+                    CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Humidity.png")) ,
+                        parameter: "precipitation",
+                        value:"86" ,
+                        unit: "%"),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  children: [
+                    CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Air.png")) ,
+                        parameter:"wind speed" ,
+                        value:"12" ,
+                        unit:"Km/hr" ),
+                    SizedBox(width: 16,),
+                    CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Humidity.png")) ,
+                        parameter: "precipitation",
+                        value:"86" ,
+                        unit: "%"),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  children: [
+                    CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Air.png")) ,
+                        parameter:"wind speed" ,
+                        value:"12" ,
+                        unit:"Km/hr" ),
+                    SizedBox(width: 16,),
+                    CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Humidity.png")) ,
+                        parameter: "precipitation",
+                        value:"86" ,
+                        unit: "%"),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  children: [
+                    CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Air.png")) ,
+                        parameter:"wind speed" ,
+                        value:"12" ,
+                        unit:"Km/hr" ),
+                    SizedBox(width: 16,),
+                    CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Humidity.png")) ,
+                        parameter: "precipitation",
+                        value:"86" ,
+                        unit: "%"),
+                  ],
+                ),
+                const SizedBox(height: 16),
 
-
-                // Row(
-                //   children: [
-                //     Expanded(
-                //       child: Container(
-                //         padding: EdgeInsets.all(16),
-                //         decoration: BoxDecoration(
-                //           color: Color(0xFFF0FFF0),
-                //           borderRadius: BorderRadius.circular(16),
-                //         ),
-                //         child: Column(
-                //           crossAxisAlignment: CrossAxisAlignment.start,
-                //           children: [
-                //             Icon(
-                //               Icons.air,
-                //               size: 32,
-                //             ),
-                //             SizedBox(height: 8),
-                //             Text(
-                //               'Wind speed',
-                //               style: TextStyle(
-                //                 fontSize: 14,
-                //               ),
-                //             ),
-                //             SizedBox(height: 8),
-                //             Text(
-                //               '12 km/hr',
-                //               style: TextStyle(
-                //                 fontSize: 18,
-                //                 fontWeight: FontWeight.bold,
-                //               ),
-                //             ),
-                //           ],
-                //         ),
-                //       ),
-                //     ),
-                //     SizedBox(width: 16),
-                //     Expanded(
-                //       child: Container(
-                //         padding: EdgeInsets.all(16),
-                //         decoration: BoxDecoration(
-                //           color: Color(0xFFF0FFF0),
-                //           borderRadius: BorderRadius.circular(16),
-                //         ),
-                //         child: Column(
-                //           crossAxisAlignment: CrossAxisAlignment.start,
-                //           children: [
-                //             Icon(
-                //               Icons.cloud_queue,
-                //               size: 32,
-                //             ),
-                //             SizedBox(height: 8),
-                //             Text(
-                //               'Precipitation',
-                //               style: TextStyle(
-                //                 fontSize: 14,
-                //               ),
-                //             ),
-                //             SizedBox(height: 8),
-                //             Text(
-                //               '86%',
-                //               style: TextStyle(
-                //                 fontSize: 18,
-                //                 fontWeight: FontWeight.bold,
-                //               ),
-                //             ),
-                //           ],
-                //         ),
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                // SizedBox(height: 16),
-                // Row(
-                //   children: [
-                //     Expanded(
-                //       child: Container(
-                //         padding: EdgeInsets.all(16),
-                //         decoration: BoxDecoration(
-                //           color: Color(0xFFF0FFF0),
-                //           borderRadius: BorderRadius.circular(16),
-                //         ),
-                //         child: Column(
-                //           crossAxisAlignment: CrossAxisAlignment.start,
-                //           children: [
-                //             Icon(
-                //               Icons.brightness_low,
-                //               size: 32,
-                //             ),
-                //             SizedBox(height: 8),
-                //             Text(
-                //               'Sunrise/Sunset',
-                //               style: TextStyle(
-                //                 fontSize: 14,
-                //               ),
-                //             ),
-                //             SizedBox(height: 8),
-                //             Text(
-                //               '6:03/17:34',
-                //               style: TextStyle(
-                //                 fontSize: 18,
-                //                 fontWeight: FontWeight.bold,
-                //               ),
-                //             ),
-                //           ],
-                //         ),
-                //       ),
-                //     ),
-                //     SizedBox(width: 16),
-                //     Expanded(
-                //       child: Container(
-                //         padding: EdgeInsets.all(16),
-                //         decoration: BoxDecoration(
-                //           color: Color(0xFFF0FFF0),
-                //           borderRadius: BorderRadius.circular(16),
-                //         ),
-                //         child: Column(
-                //           crossAxisAlignment: CrossAxisAlignment.start,
-                //           children: [
-                //             Icon(
-                //               Icons.waves,
-                //               size: 32,
-                //             ),
-                //             SizedBox(height: 8),
-                //             Text(
-                //               'Humidity',
-                //               style: TextStyle(
-                //                 fontSize: 14,
-                //               ),
-                //             ),
-                //             SizedBox(height: 8),
-                //             Text(
-                //               '60%',
-                //               style: TextStyle(
-                //                 fontSize: 18,
-                //                 fontWeight: FontWeight.bold,
-                //               ),
-                //             ),
-                //           ],
-                //         ),
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                // SizedBox(height: 16),
-                // Row(
-                //   children: [
-                //     Expanded(
-                //       child: Container(
-                //         padding: EdgeInsets.all(16),
-                //         decoration: BoxDecoration(
-                //           color: Color(0xFFF0FFF0),
-                //           borderRadius: BorderRadius.circular(16),
-                //         ),
-                //         child: Column(
-                //           crossAxisAlignment: CrossAxisAlignment.start,
-                //           children: [
-                //             Icon(
-                //               Icons.brightness_high,
-                //               size: 32,
-                //             ),
-                //             SizedBox(height: 8),
-                //             Text(
-                //               'UV Index',
-                //               style: TextStyle(
-                //                 fontSize: 14,
-                //               ),
-                //             ),
-                //             SizedBox(height: 8),
-                //             Text(
-                //               '6',
-                //               style: TextStyle(
-                //                 fontSize: 18,
-                //                 fontWeight: FontWeight.bold,
-                //               ),
-                //             ),
-                //           ],
-                //         ),
-                //       ),
-                //     ),
-                //     SizedBox(width: 16),
-                //     Expanded(
-                //       child: Container(
-                //         padding: EdgeInsets.all(16),
-                //         decoration: BoxDecoration(
-                //           color: Color(0xff4A6B3E),
-                //           borderRadius: BorderRadius.circular(16),
-                //         ),
-                //         child: Column(
-                //           crossAxisAlignment: CrossAxisAlignment.start,
-                //           children: [
-                //             Icon(
-                //               Icons.nightlight_round,
-                //               size: 32,
-                //             ),
-                //             SizedBox(height: 8),
-                //             Text(
-                //               'Moon Phase',
-                //               style: TextStyle(
-                //                 fontSize: 14,
-                //               ),
-                //             ),
-                //             SizedBox(height: 8),
-                //             Text(
-                //               'Waning Gibbous',
-                //               style: TextStyle(
-                //                 fontSize: 18,
-                //                 fontWeight: FontWeight.bold,
-                //               ),
-                //             ),
-                //           ],
-                //         ),
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                // SizedBox(height: 16),
-                // Row(
-                //   children: [
-                //     Expanded(
-                //       child: Container(
-                //         padding: EdgeInsets.all(16),
-                //         decoration: BoxDecoration(
-                //           color: Color(0xFFF0FFF0),
-                //           borderRadius: BorderRadius.circular(16),
-                //         ),
-                //         child: Column(
-                //           crossAxisAlignment: CrossAxisAlignment.start,
-                //           children: [
-                //             Icon(
-                //               Icons.water_drop,
-                //               size: 32,
-                //             ),
-                //             SizedBox(height: 8),
-                //             Text(
-                //               'Dew Point',
-                //               style: TextStyle(
-                //                 fontSize: 14,
-                //               ),
-                //             ),
-                //             SizedBox(height: 8),
-                //             Text(
-                //               '27°',
-                //               style: TextStyle(
-                //                 fontSize: 18,
-                //                 fontWeight: FontWeight.bold,
-                //               ),
-                //             ),
-                //           ],
-                //         ),
-                //       ),
-                //     ),
-                //     SizedBox(width: 16),
-                //     Expanded(
-                //       child: Container(
-                //         padding: EdgeInsets.all(16),
-                //         decoration: BoxDecoration(
-                //           color: Color(0xFFF0FFF0),
-                //           borderRadius: BorderRadius.circular(16),
-                //         ),
-                //         child: Column(
-                //           crossAxisAlignment: CrossAxisAlignment.start,
-                //           children: [
-                //             Icon(
-                //               Icons.visibility,
-                //               size: 32,
-                //             ),
-                //             SizedBox(height: 8),
-                //             Text(
-                //               'Visibility',
-                //               style: TextStyle(
-                //                 fontSize: 14,
-                //               ),
-                //             ),
-                //             SizedBox(height: 8),
-                //             Text(
-                //               '6.4 km',
-                //               style: TextStyle(
-                //                 fontSize: 18,
-                //                 fontWeight: FontWeight.bold,
-                //               ),
-                //             ),
-                //           ],
-                //         ),
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                // SizedBox(height: 16),
               ],
             ),
           ),
@@ -533,26 +284,28 @@ class CustomBox extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: themeColor4,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          prefixIcon,
-          SizedBox(height: 8),
-          Text(parameter),
-          SizedBox(height: 8),
-          Text("$value $unit",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
+    return Expanded(
+      child: Container(
+        padding: EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: themeColor.withOpacity(0.2),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            prefixIcon,
+            SizedBox(height: 8),
+            Text(parameter),
+            SizedBox(height: 8),
+            Text("$value $unit",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
