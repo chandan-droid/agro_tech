@@ -53,7 +53,8 @@ class Parameter{
 //
 // ];
 final List<String>crops=['rice','maize','coffee', 'jute', 'cotton' ,'coconut' ,'papaya' ,'orange' ,'apple' ,'muskmelon' ,'watermelon' ,'grapes' ,'mango' ,'banana' ,'pomegranate' ,'lentil' ,'chickpea' ,'pigeonpeas', 'mothbeans', 'mungbean', 'blackgram' ];
-
+final List<String>season=['summer','rainy','autumn','dew','winter','spring'];
+final List<String>states=['Odisha', 'West bangle'];
 class Soil{
   final String crop;
   final double npk;

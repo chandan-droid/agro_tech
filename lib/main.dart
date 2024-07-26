@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:agro_tech/layout.dart';
 import 'package:agro_tech/register_page.dart';
+import 'package:agro_tech/tabs/consumer%20view/shop_page.dart';
 import 'package:agro_tech/tabs/homeTab.dart';
 import 'package:agro_tech/welcome_page.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,9 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'login_page.dart';
+
+bool isLoggedIn = true;
+bool isFarmer = true;
 
 void main () async {
   // WidgetsBinding widgetsBinding =WidgetsFlutterBinding.ensureInitialized();
@@ -40,8 +44,7 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-  bool isLoggedIn = false;
-  bool isExistingUser = true;
+
 
   @override
   void initState(){
@@ -52,7 +55,9 @@ class _SplashState extends State<Splash> {
          isLoggedIn = true;
           return WelcomePage();
         } else{
-         return Layout();}
+         if(isFarmer) return Layout();
+         return ShopPage();
+         }
      }
      ));
     });
@@ -84,19 +89,6 @@ class _SplashState extends State<Splash> {
     );
   }
 }
-
-
-// Future<void> directToHomePageIfLoggedIn(BuildContext context) async {
-//   final prefs = await SharedPreferences.getInstance();
-//   final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
-//
-//   if (isLoggedIn) {
-//     Navigator.pushReplacement(
-//       context,
-//       MaterialPageRoute(builder: (context) => HomePage()),
-//     );
-//   }
-// }
 
 
 

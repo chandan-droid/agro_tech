@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../constants.dart';
 
@@ -17,19 +18,19 @@ class CropTab extends StatefulWidget {
 class _CropTabState extends State<CropTab> {
   final _formKey = GlobalKey<FormState>();
   final String location = "S Block 17, Bodhanga, Cuttack-08..";
-  final _cropController = TextEditingController();
+  final _phController = TextEditingController();
   final _npkController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _cropController.text = 'John Doe'; // Pre-fill from your data source
+    _phController.text = 'John Doe'; // Pre-fill from your data source
     _npkController.text = 'john.doe@example.com';
   }
 
   @override
   void dispose() {
-    _cropController.dispose();
+    _phController.dispose();
     _npkController.dispose();
     super.dispose();
   }
@@ -107,7 +108,7 @@ class _CropTabState extends State<CropTab> {
                     children: [
                       Expanded(
                           child: TextFormField(
-                            controller: _cropController,
+                            controller: _phController,
                             decoration: InputDecoration(
                               labelText: 'pH Level',
                             ),
@@ -155,16 +156,19 @@ class _CropTabState extends State<CropTab> {
                     ],
                   ),
                   SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        // Process form data (e.g., send to a server)
-                        print('Name: ${_cropController.text}');
-                        print('Email: ${_npkController.text}');
-                      }
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          // Process form data (e.g., send to a server)
+                          print('Name: ${_phController.text}');
+                          print('Email: ${_npkController.text}');
+                        }
 
-                    },
-                    child: Text('Auto-fill Data'),
+                      },
+                      child: Text('Auto-fill Data'),
+                    ),
                   ),
                 ],
               )),
@@ -177,7 +181,9 @@ class _CropTabState extends State<CropTab> {
                 ),
               ),
               SizedBox(height: 16),
+              
               Card(
+                color: themeColor2,
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
@@ -198,6 +204,7 @@ class _CropTabState extends State<CropTab> {
               ),
               SizedBox(height: 16),
               Card(
+                color: themeColor2,
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
@@ -235,13 +242,15 @@ class _CropTabState extends State<CropTab> {
                 decoration: InputDecoration(
                   labelText: 'State Name',
                 ),
-                items: ['Odisha', 'West bengle']
+                items: states
                     .map((e) => DropdownMenuItem(
                   value: e,
                   child: Text(e),
                 ))
                     .toList(),
-                onChanged: (value) {},
+                onChanged: (value) {
+
+                },
               ),
               SizedBox(height: 16),
               DropdownButtonFormField<String>(
@@ -263,21 +272,39 @@ class _CropTabState extends State<CropTab> {
                 ),
               ),
               SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {},
-                child: TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Expected Production (tons)',
-                  ),
+              DropdownButtonFormField<String>(
+                decoration: InputDecoration(
+                  labelText: 'Selected Season',
                 ),
+                items: season
+                    .map((e) => DropdownMenuItem(
+                  value: e,
+                  child: Text(e),
+                ))
+                    .toList(),
+                onChanged: (value) {},
               ),
               SizedBox(height: 32),
-              Text(
-                'Yield Optimization Results',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Yield Optimization Results',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  Text(
+                    'Yield Optimization Results',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                ],
               ),
               SizedBox(height: 16),
 
