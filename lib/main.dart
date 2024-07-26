@@ -11,10 +11,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'login_page.dart';
 
+<<<<<<< Updated upstream
 bool isLoggedIn = true;
 bool isFarmer = true;
 
 void main () async {
+=======
+void main() async {
+>>>>>>> Stashed changes
   // WidgetsBinding widgetsBinding =WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   // await Future.delayed(Duration(seconds: 2));
@@ -28,14 +32,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:Splash(),
+      home: Splash(),
     );
-
   }
 }
+
 class Splash extends StatefulWidget {
   const Splash({super.key});
 
@@ -47,46 +50,55 @@ class _SplashState extends State<Splash> {
 
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     Timer(Duration(seconds: 3), () {
-     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-       if(!isLoggedIn) {
-         isLoggedIn = true;
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+        if (!isLoggedIn) {
+          isLoggedIn = true;
           return WelcomePage();
+<<<<<<< Updated upstream
         } else{
          if(isFarmer) return Layout();
          return ShopPage();
          }
      }
      ));
+=======
+        } else {
+          return Layout();
+        }
+      }));
+>>>>>>> Stashed changes
     });
-
   }
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-    return    Scaffold(
-      body: Stack(
-        alignment: Alignment.center,
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height,
-            width:MediaQuery.of(context).size.width ,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("lib/assets/splash.png"),
-                    fit: BoxFit.fill
-                )
-            ),
-          ),
-          Positioned(
+    return Scaffold(
+        body: Stack(
+      alignment: Alignment.center,
+      children: [
+        Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("lib/assets/splash.png"),
+                  fit: BoxFit.fill)),
+        ),
+        Positioned(
             top: MediaQuery.of(context).size.height * 0.2,
-              child: Text("AgroTech",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800,fontSize: 70),)),
-        ],
-      )
-    );
+            child: Text(
+              "AgroTech",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w800,
+                  fontSize: 70),
+            )),
+      ],
+    ));
   }
 }
 
