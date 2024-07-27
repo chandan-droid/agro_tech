@@ -19,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    double _input_box_width = MediaQuery.of(context).size.width * 0.7 ;
+    double inputBoxWidth = MediaQuery.of(context).size.width * 0.7 ;
 
     return Material(
       child: Stack(
@@ -58,10 +58,10 @@ class _LoginPageState extends State<LoginPage> {
 
                         CustomInputField(
                           height: 60,
-                          width: _input_box_width,
-                          color: Color(0xff91AF82),
+                          width: inputBoxWidth,
+                          color: const Color(0xff91AF82),
                           borderWidth: 2,
-                          prefixIcon: ImageIcon(AssetImage("lib/assets/icons/Phone.png")),
+                          prefixIcon: const ImageIcon(AssetImage("lib/assets/icons/Phone.png")),
                           hintText: 'Mobile number',
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -76,10 +76,10 @@ class _LoginPageState extends State<LoginPage> {
                         const SizedBox(height: 16),
                         CustomInputField(
                           height: 60,
-                          width: _input_box_width,
-                          color: Color(0xff91AF82),
+                          width: inputBoxWidth,
+                          color: const Color(0xff91AF82),
                           borderWidth: 2,
-                          prefixIcon: ImageIcon(AssetImage("lib/assets/icons/Lock.png")),
+                          prefixIcon: const ImageIcon(AssetImage("lib/assets/icons/Lock.png")),
                           hintText: 'Password',
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -91,26 +91,26 @@ class _LoginPageState extends State<LoginPage> {
                             return null;
                           },
                         ),
-                        SizedBox(height: 10,),
-                        Positioned(
+                        const SizedBox(height: 10,),
+                        const Positioned(
                             right: 0,
                             child:Text("Forgot password ?",style: TextStyle(color:Color(0xff91AF82)),)
                         ),
                         const SizedBox(height: 32),
-                        Container(
-                          width: _input_box_width,
+                        SizedBox(
+                          width: inputBoxWidth,
                           height: 50,
                           child: ElevatedButton(
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
                                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-                                  return Layout();
+                                  return const Layout();
                                 }
                                 ));
                               }
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xff4A6B3E),
+                              backgroundColor: const Color(0xff4A6B3E),
                               // padding:  EdgeInsets.symmetric(
                               //     horizontal:_input_box_width*0.4,
                               //     vertical: 20
@@ -124,14 +124,14 @@ class _LoginPageState extends State<LoginPage> {
                           ),
 
                         ),
-                        SizedBox(height: 10,),
+                        const SizedBox(height: 10,),
                         InkWell(
                           onTap: (){
                             Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (builder) => RegisterPage()));
+                                MaterialPageRoute(builder: (builder) => const RegisterPage()));
                           },
-                            child: Text("Don't have an account ?",style: TextStyle(color:Color(0xff91AF82)),))
+                            child: const Text("Don't have an account ?",style: TextStyle(color:Color(0xff91AF82)),))
                       ],
                     ),
                   ),

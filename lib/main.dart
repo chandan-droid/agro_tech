@@ -1,15 +1,10 @@
 import 'dart:async';
 
 import 'package:agro_tech/layout.dart';
-import 'package:agro_tech/register_page.dart';
 import 'package:agro_tech/tabs/consumer%20view/shop_page.dart';
-import 'package:agro_tech/tabs/homeTab.dart';
 import 'package:agro_tech/welcome_page.dart';
 import 'package:flutter/material.dart';
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
-import 'login_page.dart';
 
 bool isLoggedIn = true;
 bool isFarmer = true;
@@ -28,7 +23,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Splash(),
     );
@@ -48,14 +43,14 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
         if (!isLoggedIn) {
           isLoggedIn = true;
-          return WelcomePage();
+          return const WelcomePage();
         } else{
-         if(isFarmer) return Layout();
-         return ShopPage();
+         if(isFarmer) return const Layout();
+         return const ShopPage();
          }
      }
      ));
@@ -72,14 +67,14 @@ class _SplashState extends State<Splash> {
         Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage("lib/assets/splash.png"),
                   fit: BoxFit.fill)),
         ),
         Positioned(
             top: MediaQuery.of(context).size.height * 0.2,
-            child: Text(
+            child: const Text(
               "AgroTech",
               style: TextStyle(
                   color: Colors.white,

@@ -1,18 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../constants.dart';
 
 
 
 class CropTab extends StatefulWidget {
-  CropTab({Key? key, required this.title}) : super(key: key);
+  const CropTab({super.key, required this.title});
 
   final String title;
 
   @override
-  _CropTabState createState() => _CropTabState();
+  State<CropTab> createState() => _CropTabState();
 }
 
 class _CropTabState extends State<CropTab> {
@@ -37,7 +35,7 @@ class _CropTabState extends State<CropTab> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context ).size.width;
+    // double screenWidth = MediaQuery.of(context ).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
@@ -47,9 +45,9 @@ class _CropTabState extends State<CropTab> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text("AgroTech",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-            SizedBox(height: 5,),
-            Text(location,style: TextStyle(color: Colors.white,fontSize:14,fontWeight: FontWeight.bold))
+            const Text("AgroTech",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+            const SizedBox(height: 5,),
+            Text(location,style: const TextStyle(color: Colors.white,fontSize:14,fontWeight: FontWeight.bold))
           ],
         ),
         backgroundColor:themeColor,
@@ -60,7 +58,7 @@ class _CropTabState extends State<CropTab> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Align(alignment: Alignment.center,
+              const Align(alignment: Alignment.center,
                 child: Text(
                   'Top Crop Picker',
                   style: TextStyle(
@@ -69,7 +67,7 @@ class _CropTabState extends State<CropTab> {
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Form(
                 key: _formKey,
                   child: Column(
@@ -79,7 +77,7 @@ class _CropTabState extends State<CropTab> {
                       Expanded(
                         child: DropdownButtonFormField<String>(
 
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Selected Crop',
                           ),
                           items: crops
@@ -91,11 +89,11 @@ class _CropTabState extends State<CropTab> {
                           onChanged: (value) {},
                         ),
                       ),
-                      SizedBox(width: 16),
+                      const SizedBox(width: 16),
                       Expanded(
                           child: TextFormField(
                             controller: _npkController,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               labelText: 'NPK Values',
                             ),
 
@@ -103,13 +101,13 @@ class _CropTabState extends State<CropTab> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Row(
                     children: [
                       Expanded(
                           child: TextFormField(
                             controller: _phController,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               labelText: 'pH Level',
                             ),
                             validator: (value) {
@@ -121,10 +119,10 @@ class _CropTabState extends State<CropTab> {
 
                           )
                       ),
-                      SizedBox(width: 16),
+                      const SizedBox(width: 16),
                       Expanded(
                           child: TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               labelText: 'Soil Moisture',
                             ),
 
@@ -132,7 +130,7 @@ class _CropTabState extends State<CropTab> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Row(
                     children: [
                       Expanded(
@@ -144,7 +142,7 @@ class _CropTabState extends State<CropTab> {
 
                           )
                       ),
-                      SizedBox(width: 16),
+                      const SizedBox(width: 16),
                       Expanded(
                           child: TextFormField(
                             decoration: const InputDecoration(
@@ -155,37 +153,37 @@ class _CropTabState extends State<CropTab> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Align(
                     alignment: Alignment.topRight,
                     child: ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           // Process form data (e.g., send to a server)
-                          print('Name: ${_phController.text}');
-                          print('Email: ${_npkController.text}');
+                          // print('Name: ${_phController.text}');
+                          // print('Email: ${_npkController.text}');
                         }
 
                       },
-                      child: Text('Auto-fill Data'),
+                      child: const Text('Auto-fill Data'),
                     ),
                   ),
                 ],
               )),
-              SizedBox(height: 32),
-              Text(
+              const SizedBox(height: 32),
+              const Text(
                 'Crops Recommendation List',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               
-              Card(
+              const Card(
                 color: themeColor2,
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -202,11 +200,11 @@ class _CropTabState extends State<CropTab> {
                   ),
                 ),
               ),
-              SizedBox(height: 16),
-              Card(
+              const SizedBox(height: 16),
+              const Card(
                 color: themeColor2,
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -223,23 +221,23 @@ class _CropTabState extends State<CropTab> {
                   ),
                 ),
               ),
-              SizedBox(height: 32),
-              Text(
+              const SizedBox(height: 32),
+              const Text(
                 'Yield Booster',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 16),
-              TextField(
+              const SizedBox(height: 16),
+              const TextField(
                 decoration: InputDecoration(
                   labelText: 'Land Area (hectares)',
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'State Name',
                 ),
                 items: states
@@ -252,9 +250,9 @@ class _CropTabState extends State<CropTab> {
 
                 },
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Selected Crop',
                 ),
                 items: crops
@@ -265,15 +263,15 @@ class _CropTabState extends State<CropTab> {
                     .toList(),
                 onChanged: (value) {},
               ),
-              SizedBox(height: 16),
-              TextField(
+              const SizedBox(height: 16),
+              const TextField(
                 decoration: InputDecoration(
                   labelText: 'Expected Production (tons)',
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Selected Season',
                 ),
                 items: season
@@ -284,8 +282,8 @@ class _CropTabState extends State<CropTab> {
                     .toList(),
                 onChanged: (value) {},
               ),
-              SizedBox(height: 32),
-              Column(
+              const SizedBox(height: 32),
+              const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -306,7 +304,7 @@ class _CropTabState extends State<CropTab> {
 
                 ],
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
 
             ],
           ),

@@ -1,9 +1,9 @@
 import 'package:agro_tech/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class HomeTab extends StatefulWidget {
+  const HomeTab({super.key});
+
   @override
   State<HomeTab> createState() => _HomeTabState();
 }
@@ -36,7 +36,7 @@ class _HomeTabState extends State<HomeTab> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+    // double screenHeight = MediaQuery.of(context).size.height;
     // print(screenWidth);
     // print(screenHeight);
 
@@ -61,18 +61,18 @@ class _HomeTabState extends State<HomeTab> {
       drawer: NavigationDrawer(
         children: [
           DrawerHeader(
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(10)),
+              color: themeColor,
+            ),
             child: Align(
               alignment: Alignment.center,
               child: CircleAvatar(
                 radius: 40,
                 child: Image.asset("lib/assets/farmer.png"),
               ),
-            ),
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10)),
-              color: themeColor,
             ),
           ),
           ListTile(
@@ -124,7 +124,7 @@ class _HomeTabState extends State<HomeTab> {
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Image.asset(

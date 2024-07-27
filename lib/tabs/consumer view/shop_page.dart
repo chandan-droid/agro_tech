@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ShopPage extends StatefulWidget {
-  const ShopPage({Key? key}) : super(key: key);
+  const ShopPage({super.key});
 
   @override
   State<ShopPage> createState() => _ShopPageState();
@@ -33,23 +32,21 @@ class _ShopPageState extends State<ShopPage> {
         child: Column(
           children: [
             const SizedBox(height: 16),
-            ScrollableAdWidget(
-              height: 200,
-                ads: ads),
+            ScrollableAdWidget(height: 200, ads: ads),
             const SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.all(16),
+            const Padding(
+              padding: EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     "Market View",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -65,7 +62,7 @@ class _ShopPageState extends State<ShopPage> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -81,15 +78,15 @@ class _ShopPageState extends State<ShopPage> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 32),
-                  const Text(
+                  SizedBox(height: 32),
+                  Text(
                     "Popular Categories",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -117,11 +114,11 @@ class MarketItem extends StatelessWidget {
   final String price;
 
   const MarketItem({
-    Key? key,
+    super.key,
     required this.image,
     required this.title,
     required this.price,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -162,7 +159,7 @@ class MarketItem extends StatelessWidget {
 class CategoryItem extends StatelessWidget {
   final String image;
 
-  const CategoryItem({Key? key, required this.image}) : super(key: key);
+  const CategoryItem({super.key, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -183,10 +180,10 @@ class ScrollableAdWidget extends StatefulWidget {
   final double height;
 
   const ScrollableAdWidget({
-    Key? key,
+    super.key,
     required this.ads,
     this.height = 100.0,
-  }) : super(key: key);
+  });
 
   @override
   State<ScrollableAdWidget> createState() => _ScrollableAdWidgetState();
@@ -209,9 +206,8 @@ class _ScrollableAdWidgetState extends State<ScrollableAdWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: widget.height,
-
       child: PageView.builder(
         controller: _pageController,
         itemCount: widget.ads.length,
@@ -231,7 +227,7 @@ class _ScrollableAdWidgetState extends State<ScrollableAdWidget> {
   }
 }
 
-final List<Widget> ads=[
+final List<Widget> ads = [
   Container(
     padding: const EdgeInsets.all(8),
     color: Colors.green,
@@ -264,10 +260,7 @@ final List<Widget> ads=[
             ),
           ],
         ),
-        Container(
-          child: Image.asset('lib/assets/ads1.png'),
-        ),
-
+        Image.asset('lib/assets/ads1.png'),
       ],
     ),
   ),
@@ -304,9 +297,7 @@ final List<Widget> ads=[
               ),
             ],
           ),
-          Container(
-            child: Image.asset('lib/assets/ads1.png'),
-          )
+          Image.asset('lib/assets/ads1.png')
         ],
       ),
     ),
@@ -344,9 +335,7 @@ final List<Widget> ads=[
               ),
             ],
           ),
-          Container(
-            child: Image.asset('lib/assets/ads1.png'),
-          )
+          Image.asset('lib/assets/ads1.png')
         ],
       ),
     ),
@@ -384,9 +373,7 @@ final List<Widget> ads=[
               ),
             ],
           ),
-          Container(
-            child: Image.asset('lib/assets/ads1.png'),
-          )
+          Image.asset('lib/assets/ads1.png')
         ],
       ),
     ),

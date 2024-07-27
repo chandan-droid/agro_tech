@@ -884,7 +884,7 @@ class WeatherTab extends StatefulWidget {
   final String title;
 
   @override
-  _WeatherTabState createState() => _WeatherTabState();
+  State<WeatherTab> createState() => _WeatherTabState();
 }
 
 class _WeatherTabState extends State<WeatherTab> {
