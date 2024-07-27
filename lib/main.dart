@@ -11,14 +11,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'login_page.dart';
 
-<<<<<<< Updated upstream
 bool isLoggedIn = true;
 bool isFarmer = true;
 
 void main () async {
-=======
-void main() async {
->>>>>>> Stashed changes
   // WidgetsBinding widgetsBinding =WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   // await Future.delayed(Duration(seconds: 2));
@@ -57,19 +53,12 @@ class _SplashState extends State<Splash> {
         if (!isLoggedIn) {
           isLoggedIn = true;
           return WelcomePage();
-<<<<<<< Updated upstream
         } else{
          if(isFarmer) return Layout();
          return ShopPage();
          }
      }
      ));
-=======
-        } else {
-          return Layout();
-        }
-      }));
->>>>>>> Stashed changes
     });
   }
 

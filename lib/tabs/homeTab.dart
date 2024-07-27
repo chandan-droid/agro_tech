@@ -1,10 +1,9 @@
+import 'package:agro_tech/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../constants.dart';
-
-class HomeTab extends StatefulWidget{
+class HomeTab extends StatefulWidget {
   @override
   State<HomeTab> createState() => _HomeTabState();
 }
@@ -28,25 +27,40 @@ class _HomeTabState extends State<HomeTab> {
 
   void _onScroll() {
     setState(() {
-      _opacity = (_scrollController.offset/400);
+      _opacity = (_scrollController.offset / 400);
     });
   }
-  final GlobalKey<ScaffoldState> _sKey = GlobalKey();
+
+  // final GlobalKey<ScaffoldState> _sKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context ).size.width;
-    print(screenWidth);
+    double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    print(screenHeight);
+    // print(screenWidth);
+    // print(screenHeight);
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        toolbarHeight: 100,
+        backgroundColor: themeColor,
+        centerTitle: true,
+        title: const Text(
+          "AgroTech",
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+          size: 32,
+        ),
       ),
       drawer: NavigationDrawer(
         children: [
-           DrawerHeader(
+          DrawerHeader(
             child: Align(
               alignment: Alignment.center,
               child: CircleAvatar(
@@ -54,105 +68,106 @@ class _HomeTabState extends State<HomeTab> {
                 child: Image.asset("lib/assets/farmer.png"),
               ),
             ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),bottomRight: Radius.circular(10)),
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(10)),
               color: themeColor,
             ),
           ),
           ListTile(
-            leading: Icon(Icons.person_2_outlined),
-            title: Text('My Account'),
+            leading: const Icon(Icons.person_2_outlined),
+            title: const Text('My Account'),
             onTap: () {
               Navigator.pushNamed(context, '/my_account');
             },
           ),
-
           ListTile(
-            leading: Icon(Icons.people_outline),
-            title: Text('Community'),
+            leading: const Icon(Icons.people_outline),
+            title: const Text('Community'),
             onTap: () {
               Navigator.pushNamed(context, '/community');
             },
           ),
           ListTile(
-            leading: Icon(Icons.shopping_cart_outlined),
-            title: Text('Sell Your Crops'),
+            leading: const Icon(Icons.shopping_cart_outlined),
+            title: const Text('Sell Your Crops'),
             onTap: () {
               Navigator.pushNamed(context, '/sell_crops');
             },
           ),
           ListTile(
-            leading: Icon(Icons.settings_outlined),
-            title: Text('Settings'),
+            leading: const Icon(Icons.settings_outlined),
+            title: const Text('Settings'),
             onTap: () {
               Navigator.pushNamed(context, '/settings');
             },
           ),
-
           ListTile(
-            leading: Icon(Icons.logout),
-            title: Text('Log out'),
+            leading: const Icon(Icons.logout),
+            title: const Text('Log out'),
             onTap: () {
               Navigator.pushNamed(context, '/settings');
             },
           ),
         ],
       ),
-      extendBodyBehindAppBar: true,
-      body:  Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: SingleChildScrollView(
-          controller: _scrollController,
-          child: Column(
-            children: [
-              SizedBox(height:screenHeight*0.15,),
-              Align(alignment: Alignment.topLeft,
-                  child: Text("Cultivate",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),)),
+      body: SingleChildScrollView(
+        controller: _scrollController,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(8),
+              child: Text(
+                "Welcome Ramesh",
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Image.asset(
+              'lib/assets/homepage.png',
+              width: screenWidth,
+              fit: BoxFit.cover,
+            ),
+            _buildSection(
+              title: 'Real Time Weather Updates',
+              imageUrl: 'lib/assets/realtime weather.png',
+            ),
+            _buildSection(
+              title: 'pH Levels',
+              imageUrl: 'lib/assets/home soil health.png',
+            ),
+            _buildSection(
+              title: 'Crop Advisory',
+              imageUrl: "lib/assets/crop advisory.png",
+            ),
+            // Align(
+            //   alignment: Alignment.centerLeft,
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Text("Cultivate",style: TextStyle(fontSize: 30,fontWeight: FontWeight.w600),),
+            //       Text("with Love !",style: TextStyle(fontSize: 30,fontWeight: FontWeight.w600)),
 
-              Image.asset(
-                'lib/assets/homepage.png',
-                width: screenWidth,
-              ),
-              const SizedBox(height:10),
-              _buildSection(
-                title: 'Soil Moisture Content',
-                imageUrl: 'lib/assets/realtime weather.png',
-              ),
-              _buildSection(
-                title: 'pH Levels',
-                imageUrl: 'lib/assets/home soil health.png',
-              ),
-              _buildSection(
-                title: 'Crop Advisory',
-                imageUrl:"lib/assets/crop advisory.png",
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Cultivate",style: TextStyle(fontSize: 30,fontWeight: FontWeight.w600),),
-                    Text("with Love !",style: TextStyle(fontSize: 30,fontWeight: FontWeight.w600)),
+            //       Text("Made with with ❤️ by AgroTech"),
 
-                    Text("Made with with ❤️ by AgroTech"),
-
-                  ],
-                ),
-              )
-            ],
-          ),
+            //     ],
+            //   ),
+            // )
+          ],
         ),
       ),
     );
   }
 }
-Widget _buildSection({
-  required String title,
-  String? imageUrl,
-}) {
+
+Widget _buildSection({required String title, String? imageUrl}) {
   return Container(
-    padding: const EdgeInsets.all(16.0),
-    margin: const EdgeInsets.only(bottom: 16.0),
+    padding: const EdgeInsets.all(24.0),
+    margin: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
     decoration: BoxDecoration(
       color: themeColor2.withOpacity(0.7),
       borderRadius: BorderRadius.circular(10.0),
@@ -169,7 +184,9 @@ Widget _buildSection({
             ),
           ),
         ),
-        SizedBox(width: 10,),
+        const SizedBox(
+          width: 10,
+        ),
         if (imageUrl != null)
           Container(
             decoration: BoxDecoration(

@@ -557,14 +557,329 @@
 
 // }
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+// import 'package:flutter/cupertino.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter/widgets.dart';
 
-import '../constants.dart';
+// import '../constants.dart';
+
+// class WeatherTab extends StatefulWidget {
+//   WeatherTab({Key? key, required this.title}) : super(key: key);
+
+//   final String title;
+
+//   @override
+//   _WeatherTabState createState() => _WeatherTabState();
+// }
+
+// class _WeatherTabState extends State<WeatherTab> {
+
+//   @override
+//   Widget build(BuildContext context) {
+//     double screenWidth = MediaQuery.of(context).size.width;
+//     // print(screenWidth);
+//     double screenHeight = MediaQuery.of(context).size.height;
+//     // print(screenHeight);
+
+//     return Scaffold(
+//       appBar: AppBar(
+//         toolbarHeight: screenHeight * 0.1,
+//         title: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//           children: [
+//             Text(
+//               "AgroTech",
+//               style:
+//                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+//             ),
+//             Text(location,
+//                 style: TextStyle(
+//                     color: Colors.white,
+//                     fontSize: 14,
+//                     fontWeight: FontWeight.bold))
+//           ],
+//         ),
+//         backgroundColor: themeColor,
+//       ),
+//       body: Container(
+//         decoration: const BoxDecoration(
+//           gradient: LinearGradient(
+//             begin: Alignment.topRight,
+//             end: Alignment.bottomRight,
+//             colors: [
+//               themeColor, // Start color
+//               themeColor2, // End color
+//               themeColor
+//             ],
+//           ),
+//         ),
+//         child: SingleChildScrollView(
+//           child: Container(
+//             padding: const EdgeInsets.all(16),
+//             child: Column(
+//               children: [
+//                 const Text(
+//                   'Current Weather',
+//                   style: TextStyle(
+//                     color: themeColor1,
+//                     fontSize: 30,
+//                     fontWeight: FontWeight.bold,
+//                   ),
+//                 ),
+//                 const SizedBox(height: 16),
+//                 Container(
+//                   padding: const EdgeInsets.all(18),
+//                   decoration: BoxDecoration(
+//                     color: themeColor3.withOpacity(0.3),
+//                     borderRadius: BorderRadius.circular(16),
+//                   ),
+//                   child: const Row(
+//                     children: [
+//                       Expanded(
+//                         child: Column(
+//                           crossAxisAlignment: CrossAxisAlignment.start,
+//                           children: [
+//                             Text(
+//                               'Now',
+//                               style: TextStyle(
+//                                 fontSize: 20,
+//                                 fontWeight: FontWeight.bold,
+//                               )),
+//                               SizedBox(height: 8),
+//                               Row(
+//                                 children: [
+//                                   Text(
+//                                     '26°',
+//                                     style: TextStyle(
+//                                       fontSize: 48,
+//                                       fontWeight: FontWeight.bold,
+//                                     ),
+//                                   ),
+//                                   SizedBox(width: 16),
+//                                   Icon(
+//                                     Icons.cloud,
+//                                     size: 48,
+//                                     color: Colors.amber,
+//                                   ),
+//                                 ],
+//                               ),
+//                               SizedBox(height: 8),
+//                               Text(
+//                                 'High: 28° Low: 24°',
+//                                 style: TextStyle(
+//                                   fontSize: 14,
+//                                 ),
+//                               ),
+//                             ],
+//                           ),
+//                         ),
+//                         Expanded(
+//                           child: Column(
+//                             crossAxisAlignment: CrossAxisAlignment.start,
+//                             children: [
+//                               Text(
+//                                 'Cloudy',
+//                                 style: TextStyle(
+//                                   fontSize: 18,
+//                                   fontWeight: FontWeight.bold,
+//                                 ),
+//                               ),
+//                               SizedBox(height: 8),
+//                               Text(
+//                                 'Feels like 31°',
+//                                 style: TextStyle(
+//                                   fontSize: 14,
+//                                 ),
+//                               ),
+//                             ],
+//                           ),
+//                         ),
+//                       ],
+//                     )),
+//                 const SizedBox(height: 16),
+//                 Row(
+//                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                   children: [
+//                     Expanded(
+//                       child: ElevatedButton(
+//                         onPressed: () {},
+//                         style: ElevatedButton.styleFrom(
+//                           backgroundColor: themeColor.withOpacity(0.4),
+//                           padding: EdgeInsets.symmetric(
+//                             vertical: 16,
+//                           ),
+//                           textStyle: TextStyle(
+//                             color: Colors.black,
+//                             fontSize: 16,
+//                             fontWeight: FontWeight.bold,
+//                           ),
+//                           shape: RoundedRectangleBorder(
+//                             borderRadius: BorderRadius.circular(16),
+//                           ),
+//                         ),
+//                         child: Text('Today'),
+//                       ),
+//                     ),
+//                     const SizedBox(
+//                       width: 16,
+//                     ),
+//                     Expanded(
+//                       child: ElevatedButton(
+//                         onPressed: () {},
+//                         style: ElevatedButton.styleFrom(
+//                           backgroundColor: themeColor3,
+//                           padding: EdgeInsets.symmetric(
+//                             vertical: 16,
+//                           ),
+//                           textStyle: TextStyle(
+//                             fontSize: 16,
+//                             fontWeight: FontWeight.bold,
+//                           ),
+//                           shape: RoundedRectangleBorder(
+//                             borderRadius: BorderRadius.circular(16),
+//                           ),
+//                         ),
+//                         child: Text('Tomorrow'),
+//                       ),
+//                     ),
+//                     SizedBox(width: 16),
+//                     Expanded(
+//                       child: ElevatedButton(
+//                         onPressed: () {},
+//                         style: ElevatedButton.styleFrom(
+//                           backgroundColor: themeColor3,
+//                           padding: EdgeInsets.symmetric(
+//                             vertical: 16,
+//                           ),
+//                           textStyle: TextStyle(
+//                             fontSize: 16,
+//                             fontWeight: FontWeight.bold,
+//                           ),
+//                           shape: RoundedRectangleBorder(
+//                             borderRadius: BorderRadius.circular(16),
+//                           ),
+//                         ),
+//                         child: Text('10 Days'),
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//                 const SizedBox(height: 16),
+
+//                 Row(
+//                   children: [
+//                     CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Air.png")) ,
+//                         parameter:"wind speed" ,
+//                         value:"12" ,
+//                         unit:"Km/hr" ),
+//                     SizedBox(width: 16,),
+//                     CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Humidity.png")) ,
+//                         parameter: "precipitation",
+//                         value:"86" ,
+//                         unit: "%"),
+//                   ],
+//                 ),
+//                 const SizedBox(height: 16),
+//                 Row(
+//                   children: [
+//                     CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Air.png")) ,
+//                         parameter:"wind speed" ,
+//                         value:"12" ,
+//                         unit:"Km/hr" ),
+//                     SizedBox(width: 16,),
+//                     CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Humidity.png")) ,
+//                         parameter: "precipitation",
+//                         value:"86" ,
+//                         unit: "%"),
+//                   ],
+//                 ),
+//                 const SizedBox(height: 16),
+//                 Row(
+//                   children: [
+//                     CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Air.png")) ,
+//                         parameter:"wind speed" ,
+//                         value:"12" ,
+//                         unit:"Km/hr" ),
+//                     SizedBox(width: 16,),
+//                     CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Humidity.png")) ,
+//                         parameter: "precipitation",
+//                         value:"86" ,
+//                         unit: "%"),
+//                   ],
+//                 ),
+//                 const SizedBox(height: 16),
+//                 Row(
+//                   children: [
+//                     CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Air.png")) ,
+//                         parameter:"wind speed" ,
+//                         value:"12" ,
+//                         unit:"Km/hr" ),
+//                     SizedBox(width: 16,),
+//                     CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Humidity.png")) ,
+//                         parameter: "precipitation",
+//                         value:"86" ,
+//                         unit: "%"),
+//                   ],
+//                 ),
+//                 const SizedBox(height: 16),
+
+//               ],
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// class CustomBox extends StatelessWidget {
+//   final Widget prefixIcon;
+//   final String parameter;
+//   final String value;
+//   final String unit;
+
+//   CustomBox(
+//       {super.key,
+//       required this.prefixIcon,
+//       required this.parameter,
+//       required this.value,
+//       required this.unit});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Expanded(
+//       child: Container(
+//         padding: EdgeInsets.all(16),
+//         decoration: BoxDecoration(
+//           color: themeColor.withOpacity(0.2),
+//           borderRadius: BorderRadius.circular(16),
+//         ),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             prefixIcon,
+//             SizedBox(height: 8),
+//             Text(parameter),
+//             SizedBox(height: 8),
+//             Text("$value $unit",
+//               style: TextStyle(
+//                 fontSize: 18,
+//                 fontWeight: FontWeight.bold,
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+import 'package:agro_tech/constants.dart';
+import 'package:flutter/material.dart';
 
 class WeatherTab extends StatefulWidget {
-  WeatherTab({Key? key, required this.title}) : super(key: key);
+  const WeatherTab({super.key, required this.title});
 
   final String title;
 
@@ -573,12 +888,12 @@ class WeatherTab extends StatefulWidget {
 }
 
 class _WeatherTabState extends State<WeatherTab> {
-
+  final String location = "S Block 17, Bodhanga, Cuttack-08..";
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    // print(screenWidth);
     double screenHeight = MediaQuery.of(context).size.height;
+    // print(screenWidth);
     // print(screenHeight);
 
     return Scaffold(
@@ -588,13 +903,13 @@ class _WeatherTabState extends State<WeatherTab> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text(
+            const Text(
               "AgroTech",
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),
             Text(location,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.white,
                     fontSize: 14,
                     fontWeight: FontWeight.bold))
@@ -605,7 +920,7 @@ class _WeatherTabState extends State<WeatherTab> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topRight,
+            begin: Alignment.topCenter,
             end: Alignment.bottomRight,
             colors: [
               themeColor, // Start color
@@ -622,23 +937,22 @@ class _WeatherTabState extends State<WeatherTab> {
                 const Text(
                   'Current Weather',
                   style: TextStyle(
-                    color: themeColor1,
+                    color: themeColor2,
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 16),
                 Container(
-<<<<<<< Updated upstream
-                  padding: const EdgeInsets.all(18),
-                  decoration: BoxDecoration(
-                    color: themeColor3.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: const Row(
-                    children: [
-                      Expanded(
-                        child: Column(
+                    padding: const EdgeInsets.all(18),
+                    decoration: BoxDecoration(
+                      color: themeColor2.withOpacity(0.7),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
@@ -646,74 +960,51 @@ class _WeatherTabState extends State<WeatherTab> {
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-=======
-                    padding: const EdgeInsets.all(18),
-                    decoration: BoxDecoration(
-                      color: themeColor3.withOpacity(0.4),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: const Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Now',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
->>>>>>> Stashed changes
                               ),
-                              SizedBox(height: 8),
-                              Row(
-                                children: [
-                                  Text(
-                                    '26°',
-                                    style: TextStyle(
-                                      fontSize: 48,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  '26°',
+                                  style: TextStyle(
+                                    fontSize: 48,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  SizedBox(width: 16),
-                                  Icon(
-                                    Icons.cloud,
-                                    size: 48,
-                                    color: Colors.amber,
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 8),
-                              Text(
-                                'High: 28° Low: 24°',
-                                style: TextStyle(
-                                  fontSize: 14,
                                 ),
+                                SizedBox(width: 16),
+                                Icon(
+                                  Icons.cloud,
+                                  size: 48,
+                                  color: Colors.amber,
+                                ),
+                              ],
+                            ),
+                            Text(
+                              'High: 28° Low: 24°',
+                              style: TextStyle(
+                                fontSize: 14,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Cloudy',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Cloudy',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
                               ),
-                              SizedBox(height: 8),
-                              Text(
-                                'Feels like 31°',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                ),
+                            ),
+                            SizedBox(height: 8),
+                            Text(
+                              'Feels like 31°',
+                              style: TextStyle(
+                                fontSize: 14,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ],
                     )),
@@ -725,12 +1016,9 @@ class _WeatherTabState extends State<WeatherTab> {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: themeColor.withOpacity(0.4),
-                          padding: EdgeInsets.symmetric(
-                            vertical: 16,
-                          ),
-                          textStyle: TextStyle(
-                            color: Colors.black,
+                          backgroundColor: themeColor1,
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          textStyle: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
@@ -738,21 +1026,19 @@ class _WeatherTabState extends State<WeatherTab> {
                             borderRadius: BorderRadius.circular(16),
                           ),
                         ),
-                        child: Text('Today'),
+                        child: const Text('Today'),
                       ),
                     ),
-                    const SizedBox(
-                      width: 16,
-                    ),
+                    const SizedBox(width: 16),
                     Expanded(
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: themeColor3,
-                          padding: EdgeInsets.symmetric(
+                          backgroundColor: themeColor2,
+                          padding: const EdgeInsets.symmetric(
                             vertical: 16,
                           ),
-                          textStyle: TextStyle(
+                          textStyle: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
@@ -760,19 +1046,19 @@ class _WeatherTabState extends State<WeatherTab> {
                             borderRadius: BorderRadius.circular(16),
                           ),
                         ),
-                        child: Text('Tomorrow'),
+                        child: const Text('Tomorrow'),
                       ),
                     ),
-                    SizedBox(width: 16),
+                    const SizedBox(width: 16),
                     Expanded(
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: themeColor3,
-                          padding: EdgeInsets.symmetric(
+                          backgroundColor: themeColor2,
+                          padding: const EdgeInsets.symmetric(
                             vertical: 16,
                           ),
-                          textStyle: TextStyle(
+                          textStyle: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
@@ -780,145 +1066,79 @@ class _WeatherTabState extends State<WeatherTab> {
                             borderRadius: BorderRadius.circular(16),
                           ),
                         ),
-                        child: Text('10 Days'),
+                        child: const Text('10 Days'),
                       ),
                     ),
                   ],
                 ),
                 const SizedBox(height: 16),
-<<<<<<< Updated upstream
-
-                Row(
-                  children: [
-                    CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Air.png")) ,
-                        parameter:"wind speed" ,
-                        value:"12" ,
-                        unit:"Km/hr" ),
-                    SizedBox(width: 16,),
-                    CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Humidity.png")) ,
-                        parameter: "precipitation",
-                        value:"86" ,
-                        unit: "%"),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                Row(
-                  children: [
-                    CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Air.png")) ,
-                        parameter:"wind speed" ,
-                        value:"12" ,
-                        unit:"Km/hr" ),
-                    SizedBox(width: 16,),
-                    CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Humidity.png")) ,
-                        parameter: "precipitation",
-                        value:"86" ,
-                        unit: "%"),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                Row(
-                  children: [
-                    CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Air.png")) ,
-                        parameter:"wind speed" ,
-                        value:"12" ,
-                        unit:"Km/hr" ),
-                    SizedBox(width: 16,),
-                    CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Humidity.png")) ,
-                        parameter: "precipitation",
-                        value:"86" ,
-                        unit: "%"),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                Row(
-                  children: [
-                    CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Air.png")) ,
-                        parameter:"wind speed" ,
-                        value:"12" ,
-                        unit:"Km/hr" ),
-                    SizedBox(width: 16,),
-                    CustomBox(prefixIcon:const ImageIcon(AssetImage("lib/assets/icons/Humidity.png")) ,
-                        parameter: "precipitation",
-                        value:"86" ,
-                        unit: "%"),
-                  ],
-                ),
-                const SizedBox(height: 16),
-
-=======
-                Row(
+                const Row(
                   children: [
                     CustomBox(
-                        prefixIcon: const ImageIcon(
-                            AssetImage("lib/assets/icons/Air.png")),
-                        parameter: "wind speed",
+                        assetImage: AssetImage("lib/assets/icons/Air.png"),
+                        parameter: "Wind speed",
                         value: "12",
-                        unit: "Km/hr"),
+                        unit: "km/hr"),
                     SizedBox(width: 16),
                     CustomBox(
-                        prefixIcon: const ImageIcon(
-                            AssetImage("lib/assets/icons/Rain.png")),
-                        parameter: "precipitation",
-                        value: "12",
-                        unit: "Km/hr"),
+                        assetImage: AssetImage("lib/assets/icons/Rain.png"),
+                        parameter: "Precipitation",
+                        value: "86",
+                        unit: "%"),
                   ],
                 ),
-                SizedBox(height: 16),
-                Row(
+                const SizedBox(height: 16),
+                const Row(
                   children: [
                     CustomBox(
-                        prefixIcon: const ImageIcon(
-                            AssetImage("lib/assets/icons/Sunrise.png")),
+                        assetImage: AssetImage("lib/assets/icons/Sunrise.png"),
                         parameter: "Sunrise/Sunset",
-                        value: "12",
-                        unit: "Km/hr"),
+                        value: "6:03/",
+                        unit: "17:34"),
                     SizedBox(width: 16),
                     CustomBox(
-                        prefixIcon: const ImageIcon(
-                            AssetImage("lib/assets/icons/Humidity.png")),
+                        assetImage: AssetImage("lib/assets/icons/Humidity.png"),
                         parameter: "Humidity",
                         value: "60",
                         unit: "%"),
                   ],
                 ),
-                SizedBox(height: 16),
-                Row(
+                const SizedBox(height: 16),
+                const Row(
                   children: [
                     CustomBox(
-                        prefixIcon: const ImageIcon(
-                            AssetImage("lib/assets/icons/Sun light.png")),
-                        parameter: "wind speed",
-                        value: "12",
-                        unit: "Km/hr"),
+                        assetImage:
+                            AssetImage("lib/assets/icons/Sun light.png"),
+                        parameter: "UV Index",
+                        value: "6",
+                        unit: ""),
                     SizedBox(width: 16),
                     CustomBox(
-                        prefixIcon: const ImageIcon(
-                            AssetImage("lib/assets/icons/Half moon.png")),
-                        parameter: "wind speed",
-                        value: "12",
-                        unit: "Km/hr"),
+                        assetImage:
+                            AssetImage("lib/assets/icons/Half moon.png"),
+                        parameter: "Moon Phase",
+                        value: "Waning\nGibbous",
+                        unit: ""),
                   ],
                 ),
-                SizedBox(height: 16),
-                Row(
+                const SizedBox(height: 16),
+                const Row(
                   children: [
                     CustomBox(
-                        prefixIcon: const ImageIcon(
-                            AssetImage("lib/assets/icons/Droplet.png")),
-                        parameter: "wind speed",
-                        value: "12",
-                        unit: "Km/hr"),
+                        assetImage: AssetImage("lib/assets/icons/Droplet.png"),
+                        parameter: "Dew Point",
+                        value: "27",
+                        unit: "°"),
                     SizedBox(width: 16),
                     CustomBox(
-                        prefixIcon: const ImageIcon(
-                            AssetImage("lib/assets/icons/Eye closed.png")),
-                        parameter: "wind speed",
-                        value: "12",
-                        unit: "Km/hr"),
+                        assetImage:
+                            AssetImage("lib/assets/icons/Eye closed.png"),
+                        parameter: "Visibility",
+                        value: "6.1",
+                        unit: "km"),
                   ],
                 ),
-                SizedBox(height: 16),
->>>>>>> Stashed changes
+                const SizedBox(height: 16),
               ],
             ),
           ),
@@ -929,14 +1149,14 @@ class _WeatherTabState extends State<WeatherTab> {
 }
 
 class CustomBox extends StatelessWidget {
-  final Widget prefixIcon;
+  final ImageProvider assetImage;
   final String parameter;
   final String value;
   final String unit;
 
-  CustomBox(
+  const CustomBox(
       {super.key,
-      required this.prefixIcon,
+      required this.assetImage,
       required this.parameter,
       required this.value,
       required this.unit});
@@ -945,32 +1165,33 @@ class CustomBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding: EdgeInsets.all(16),
+        height: 120,
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-<<<<<<< Updated upstream
-          color: themeColor.withOpacity(0.2),
-=======
-          color: themeColor4.withOpacity(0.3),
->>>>>>> Stashed changes
+          color: themeColor.withOpacity(0.3),
           borderRadius: BorderRadius.circular(16),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            prefixIcon,
-            SizedBox(height: 8),
-            Text(parameter),
-            SizedBox(height: 8),
-<<<<<<< Updated upstream
-            Text("$value $unit",
-=======
-            Text(
-              "$value $unit",
->>>>>>> Stashed changes
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+            ImageIcon(
+              assetImage,
+              size: 32,
+              color: Colors.black,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(parameter),
+                Text(
+                  "$value$unit",
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
