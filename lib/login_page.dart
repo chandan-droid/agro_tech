@@ -1,9 +1,7 @@
 import 'package:agro_tech/constants.dart';
 import 'package:agro_tech/otp_var_page.dart';
-import 'package:agro_tech/register_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'layout.dart';
 
 late final String phone_no;
 
@@ -16,12 +14,12 @@ class LoginPage extends StatefulWidget{
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController _controller  = TextEditingController();
+  final TextEditingController _controller  = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    double _input_box_width = MediaQuery.of(context).size.width * 0.7 ;
+    double inputBoxWidth = MediaQuery.of(context).size.width * 0.7 ;
 
     return Material(
       child: Stack(
@@ -67,10 +65,10 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         CustomInputField2(
                           height: 60,
-                          width: _input_box_width,
-                          color: Color(0xff91AF82),
+                          width: inputBoxWidth,
+                          color: const Color(0xff91AF82),
                           borderWidth: 2,
-                          prefixIcon: ImageIcon(AssetImage("lib/assets/icons/Phone.png")),
+                          prefixIcon: const ImageIcon(AssetImage("lib/assets/icons/Phone.png")),
                           hintText: 'Mobile number',
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -84,10 +82,9 @@ class _LoginPageState extends State<LoginPage> {
 
                         ),
 
-
-                        const SizedBox(height: 45),
+                        const SizedBox(height: 32),
                         SizedBox(
-                          width: _input_box_width,
+                          width: inputBoxWidth,
                           height: 50,
                           child: ElevatedButton(
                             onPressed: () {
@@ -101,6 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: themeColor,
+
                               textStyle: const TextStyle(fontSize: 18),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25.0),
@@ -108,9 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             child: const Text('Get OTP',style: TextStyle(color: Colors.white),),
                           ),
-
                         ),
-                        SizedBox(height: 10,),
 
                       ],
                     ),

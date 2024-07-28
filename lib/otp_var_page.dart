@@ -1,5 +1,4 @@
 import 'package:agro_tech/constants.dart';
-import 'package:agro_tech/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
@@ -66,11 +65,14 @@ class _OtpPageState extends State<OtpPage> {
                       children: [
 
                         OtpTextField(
+                          enabled: true,
                           numberOfFields: 4,
                           fieldWidth: 37,
                           fieldHeight: 50,
                           showFieldAsBox: true,
                           borderColor: themeColor,
+                          enabledBorderColor: themeColor1,
+                          focusedBorderColor: themeColor,
                           borderWidth: 1.5,
                           borderRadius: BorderRadius.circular(10),
                           keyboardType: TextInputType.number,
