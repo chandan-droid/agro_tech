@@ -1,21 +1,23 @@
+import 'package:agro_tech/constants.dart';
+import 'package:agro_tech/otp_var_page.dart';
 import 'package:agro_tech/register_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'layout.dart';
+
+late final String phone_no;
 
 class LoginPage extends StatefulWidget{
   const LoginPage({super.key,required this.isFarmer});
   final bool isFarmer;
-
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController _controller  = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +46,15 @@ class _LoginPageState extends State<LoginPage> {
 
                 children: [
                   const SizedBox(height: 50),
+                  const Text(
+                    'Login',
+                    style: TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.w900,
+                      color: Color(0xff4A6B3E),
+                    ),
+                  ),
+                  const SizedBox(height: 50),
                   CircleAvatar(
                       radius: 40,
                       child: Image.asset("lib/assets/farmer.png"),
@@ -54,9 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                     key: _formKey,
                     child: Column(
                       children: [
-                        //
-
-                        CustomInputField(
+                        CustomInputField2(
                           height: 60,
                           width: _input_box_width,
                           color: Color(0xff91AF82),
@@ -72,66 +81,37 @@ class _LoginPageState extends State<LoginPage> {
                             }
                             return null;
                           },
+
                         ),
-                        const SizedBox(height: 16),
-                        CustomInputField(
-                          height: 60,
-                          width: _input_box_width,
-                          color: Color(0xff91AF82),
-                          borderWidth: 2,
-                          prefixIcon: ImageIcon(AssetImage("lib/assets/icons/Lock.png")),
-                          hintText: 'Password',
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter password';
-                            }
-                            // if (value.length != 10 ) {
-                            //   return 'Invalid mobile number';
-                            // }
-                            return null;
-                          },
-                        ),
-                        SizedBox(height: 10,),
-                        Positioned(
-                            right: 0,
-                            child:Text("Forgot password ?",style: TextStyle(color:Color(0xff91AF82)),)
-                        ),
-                        const SizedBox(height: 32),
-                        Container(
+
+
+                        const SizedBox(height: 45),
+                        SizedBox(
                           width: _input_box_width,
                           height: 50,
                           child: ElevatedButton(
                             onPressed: () {
+                              phone_no = _controller.text;
                               if (_formKey.currentState!.validate()) {
                                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-                                  return Layout();
+                                  return const OtpPage();
                                 }
                                 ));
                               }
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xff4A6B3E),
-                              // padding:  EdgeInsets.symmetric(
-                              //     horizontal:_input_box_width*0.4,
-                              //     vertical: 20
-                              // ),
+                              backgroundColor: themeColor,
                               textStyle: const TextStyle(fontSize: 18),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25.0),
                               ),
                             ),
-                            child: const Text('Log in',style: TextStyle(color: Colors.white),),
+                            child: const Text('Get OTP',style: TextStyle(color: Colors.white),),
                           ),
 
                         ),
                         SizedBox(height: 10,),
-                        InkWell(
-                          onTap: (){
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (builder) => RegisterPage()));
-                          },
-                            child: Text("Don't have an account ?",style: TextStyle(color:Color(0xff91AF82)),))
+
                       ],
                     ),
                   ),
@@ -141,6 +121,66 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ],
 
+      ),
+    );
+  }
+}
+
+class CustomInputField2 extends StatelessWidget {
+  final double height;
+  final double width;
+  final Color color;
+  final double borderWidth;
+  final Widget prefixIcon;
+  final String hintText;
+  final String? Function(String?)? validator;
+  final String? Function(String?)? saveFunction;
+
+
+  CustomInputField2({
+    this.height = 50,
+    this.width = 150,
+    this.borderWidth = 1,
+    this.color = Colors.grey,
+    required this.prefixIcon,
+    required this.hintText,
+    this.validator,
+    this.saveFunction,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: height,
+      width: width,
+      decoration: BoxDecoration(
+        border: Border.all(color: color, width: borderWidth),
+        borderRadius: BorderRadius.circular(25.0),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+        child: Row(
+          children: [
+            prefixIcon != null?
+            Theme(
+              data: ThemeData(iconTheme: IconThemeData(color: color)),
+              child: prefixIcon,
+            ): Container(),
+            const SizedBox(width: 10.0),
+            Expanded(
+              child: TextFormField(
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: hintText,
+                    hintStyle: TextStyle(color: color)
+                ),
+                onSaved: saveFunction,
+                validator: validator,
+              ),
+
+            ),
+          ],
+        ),
       ),
     );
   }

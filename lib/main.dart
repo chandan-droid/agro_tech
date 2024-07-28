@@ -11,7 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'login_page.dart';
 
-bool isLoggedIn = true;
+bool isLoggedIn = false;
 bool isFarmer = true;
 
 void main () async {
