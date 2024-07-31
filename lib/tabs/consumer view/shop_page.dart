@@ -1,8 +1,9 @@
-import 'package:flutter/cupertino.dart';
+import 'package:agro_tech/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:scroll_snap_list/scroll_snap_list.dart';
 
 class ShopPage extends StatefulWidget {
-  const ShopPage({Key? key}) : super(key: key);
+  const ShopPage({super.key});
 
   @override
   State<ShopPage> createState() => _ShopPageState();
@@ -11,16 +12,15 @@ class ShopPage extends StatefulWidget {
 class _ShopPageState extends State<ShopPage> {
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor:themeColor,
+        elevation: 5,
+        shadowColor: Colors.black,
         title: const Text(
           "Hi Shyam!",
           style: TextStyle(color: Colors.white),
-        ),
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.menu, color: Colors.white),
         ),
         actions: [
           IconButton(
@@ -29,27 +29,79 @@ class _ShopPageState extends State<ShopPage> {
           ),
         ],
       ),
+      drawer: NavigationDrawer(
+        indicatorColor: Colors.white,
+        children: [
+          DrawerHeader(
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(10)),
+              color: themeColor,
+            ),
+            child: Align(
+              alignment: Alignment.center,
+              child: CircleAvatar(
+                radius: 40,
+                child: Image.asset("lib/assets/consumer.png"),
+              ),
+            ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.person_2_outlined),
+            title: const Text('My Account'),
+            onTap: () {
+              Navigator.pushNamed(context, '/my_account');
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.people_outline),
+            title: const Text('Community'),
+            onTap: () {
+              Navigator.pushNamed(context, '/community');
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.settings_outlined),
+            title: const Text('Settings'),
+            onTap: () {
+              Navigator.pushNamed(context, '/settings');
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.logout),
+            title: const Text('Log out'),
+            onTap: () {
+              Navigator.pushNamed(context, '/settings');
+            },
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             const SizedBox(height: 16),
-            ScrollableAdWidget(
-              height: 200,
-                ads: ads),
+           SizedBox(
+             height: 200,
+             child: ScrollSnapList(itemBuilder: _buildItemList,
+                 itemCount: data.length,
+                 itemSize:screenWidth ,
+                 onItemFocus: (int){}),
+           ),
             const SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.all(16),
+            const Padding(
+              padding: EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     "Market View",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -65,7 +117,7 @@ class _ShopPageState extends State<ShopPage> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -81,15 +133,15 @@ class _ShopPageState extends State<ShopPage> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 32),
-                  const Text(
+                  SizedBox(height: 32),
+                  Text(
                     "Popular Categories",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -117,11 +169,11 @@ class MarketItem extends StatelessWidget {
   final String price;
 
   const MarketItem({
-    Key? key,
+    super.key,
     required this.image,
     required this.title,
     required this.price,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -132,25 +184,29 @@ class MarketItem extends StatelessWidget {
           color: Colors.green[100],
           borderRadius: BorderRadius.circular(16),
         ),
-        child: Column(
+        child: Row(
           children: [
             Image.asset(
               image,
               height: 80,
               width: 80,
             ),
-            const SizedBox(height: 8),
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              price,
-              style: const TextStyle(fontSize: 14),
+            Column(
+              children: [
+                const SizedBox(height: 8),
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  price,
+                  style: const TextStyle(fontSize: 14),
+                ),
+              ],
             ),
           ],
         ),
@@ -162,7 +218,7 @@ class MarketItem extends StatelessWidget {
 class CategoryItem extends StatelessWidget {
   final String image;
 
-  const CategoryItem({Key? key, required this.image}) : super(key: key);
+  const CategoryItem({super.key, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -183,10 +239,10 @@ class ScrollableAdWidget extends StatefulWidget {
   final double height;
 
   const ScrollableAdWidget({
-    Key? key,
+    super.key,
     required this.ads,
     this.height = 100.0,
-  }) : super(key: key);
+  });
 
   @override
   State<ScrollableAdWidget> createState() => _ScrollableAdWidgetState();
@@ -209,9 +265,8 @@ class _ScrollableAdWidgetState extends State<ScrollableAdWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: widget.height,
-
       child: PageView.builder(
         controller: _pageController,
         itemCount: widget.ads.length,
@@ -231,7 +286,7 @@ class _ScrollableAdWidgetState extends State<ScrollableAdWidget> {
   }
 }
 
-final List<Widget> ads=[
+final List<Widget> ads = [
   Container(
     padding: const EdgeInsets.all(8),
     color: Colors.green,
@@ -264,10 +319,7 @@ final List<Widget> ads=[
             ),
           ],
         ),
-        Container(
-          child: Image.asset('lib/assets/ads1.png'),
-        ),
-
+        Image.asset('lib/assets/ads1.png'),
       ],
     ),
   ),
@@ -304,9 +356,46 @@ final List<Widget> ads=[
               ),
             ],
           ),
-          Container(
-            child: Image.asset('lib/assets/ads1.png'),
-          )
+          Image.asset('lib/assets/ads1.png')
+        ],
+      ),
+    ),
+  ),
+  Expanded(
+    child: Container(
+      padding: const EdgeInsets.all(8),
+      color: Colors.green,
+      child: Row(
+        children: [
+          const Column(
+            children: [
+              Text(
+                "Discount",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                "25%",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 20,),
+              Text(
+                "All vegetables & Fruits",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                ),
+              ),
+            ],
+          ),
+          Image.asset('lib/assets/ads1.png')
         ],
       ),
     ),
@@ -344,51 +433,59 @@ final List<Widget> ads=[
               ),
             ],
           ),
-          Container(
-            child: Image.asset('lib/assets/ads1.png'),
-          )
-        ],
-      ),
-    ),
-  ),
-  Expanded(
-    child: Container(
-      padding: const EdgeInsets.all(8),
-      color: Colors.green,
-      child: Row(
-        children: [
-          const Column(
-            children: [
-              Text(
-                "Discount",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                "25%",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                "All vegetables & Fruits",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                ),
-              ),
-            ],
-          ),
-          Container(
-            child: Image.asset('lib/assets/ads1.png'),
-          )
+          Image.asset('lib/assets/ads1.png')
         ],
       ),
     ),
   )
 ];
+
+List<int> data = [
+  10,9,8,7,6,5,4,3,2,1
+];
+
+Widget _buildItemList(BuildContext context, int index){
+  return Expanded(
+    child: Container(
+      width: 400,
+      padding: const EdgeInsets.all(8),
+      color: themeColor,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Discount",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                "25%",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 20,),
+              Text(
+                "All vegetables & Fruits",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(width: 30,),
+          Image.asset('lib/assets/ads1.png')
+        ],
+      ),
+    ),
+  );
+}
