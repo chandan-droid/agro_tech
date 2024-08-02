@@ -1,6 +1,11 @@
 import 'package:agro_tech/constants.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dots_indicator/dots_indicator.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
+import 'package:star_rating/star_rating.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
@@ -15,7 +20,9 @@ class _ShopPageState extends State<ShopPage> {
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 100,
         backgroundColor:themeColor,
+        foregroundColor: Colors.white,
         elevation: 5,
         shadowColor: Colors.black,
         title: const Text(
@@ -27,10 +34,43 @@ class _ShopPageState extends State<ShopPage> {
             onPressed: () {},
             icon: const Icon(Icons.shopping_cart, color: Colors.white),
           ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.person, color: Colors.white),
+          ),
         ],
+        bottom: PreferredSize(
+          preferredSize: Size(100, 40),
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Container(
+              height: 48,
+              width: MediaQuery.of(context).size.width * 0.96,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50)
+              ),
+
+              child:TextFormField(
+                decoration: InputDecoration(
+                    fillColor: Colors.white10,
+                    filled: true,
+                    labelText: "Search...",
+                    labelStyle: TextStyle(color: Colors.white38),
+                    prefixIcon: Icon(Icons.search,
+                      color: Colors.white38,),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide.none
+                    )
+
+                ),
+              ),
+
+            ),
+          ),
+        ),
       ),
       drawer: NavigationDrawer(
-        indicatorColor: Colors.white,
         children: [
           DrawerHeader(
             decoration: const BoxDecoration(
@@ -81,59 +121,12 @@ class _ShopPageState extends State<ShopPage> {
         child: Column(
           children: [
             const SizedBox(height: 16),
-           SizedBox(
-             height: 200,
-             child: ScrollSnapList(itemBuilder: _buildItemList,
-                 itemCount: data.length,
-                 itemSize:screenWidth ,
-                 onItemFocus: (int){}),
-           ),
-            const SizedBox(height: 16),
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Market View",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      MarketItem(
-                        image: 'assets/images/mango.jpg',
-                        title: 'Mango',
-                        price: '100/- per kg',
-                      ),
-                      MarketItem(
-                        image: 'assets/images/tomato.jpg',
-                        title: 'Tomato',
-                        price: '150/- per kg',
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      MarketItem(
-                        image: 'assets/images/jackfruit.jpg',
-                        title: 'Jackfruit',
-                        price: '170/- per kg',
-                      ),
-                      MarketItem(
-                        image: 'assets/images/rice.jpg',
-                        title: 'Rice',
-                        price: '30/- per kg',
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 32),
+                  SizedBox(height: 12),
                   Text(
                     "Popular Categories",
                     style: TextStyle(
@@ -142,18 +135,98 @@ class _ShopPageState extends State<ShopPage> {
                     ),
                   ),
                   SizedBox(height: 16),
+                  SizedBox(
+                    height: 80,
+                    child: Expanded(
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            CategoryItem(
+                              image: 'lib/assets/products/mango.png',
+                              name: 'vegetables',
+                            ),
+                            CategoryItem(
+                              image: 'lib/assets/products/mango.png',
+                              name: 'fruits',
+                            ),
+                            CategoryItem(
+                              image: 'lib/assets/products/mango.png',
+                              name: 'flowers',
+                            ),
+                            CategoryItem(
+                              image: 'lib/assets/products/mango.png',
+                              name: 'crops',
+                            ),
+
+                          ],
+                        ),
+
+                      ),
+                    ),
+                  ),
+                  SnapList(),
+                  SizedBox(height: 10,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CategoryItem(
-                        image: 'assets/images/beans.jpg',
+                      Text(
+                        "Market View",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                      CategoryItem(
-                        image: 'assets/images/rice_field.jpg',
-                      ),
+                      CircleAvatar(
+                        radius: 15,
+                        backgroundColor: themeColor,
+                        child: Icon(CupertinoIcons.right_chevron,color: Colors.white,size: 13,),
+                      )
                     ],
                   ),
+                  SizedBox(height: 16),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        MarketItem(
+                          image: 'lib/assets/products/mango.png',
+                          title: 'Mango',
+                          description: 'fresh mangos',
+                          price: '100/- per kg',
+                          rating: 4,
+                        ),
+                        SizedBox(width: 16),
+                        MarketItem(
+                          image: 'lib/assets/products/tomato.png',
+                          title: 'Tomato',
+                          description: 'fresh organic tamatos',
+                          price: '150/- per kg',
+                          rating: 4,
+                        ),
+                        SizedBox(width: 16),
+                        MarketItem(
+                          image: 'lib/assets/products/tomato.png',
+                          title: 'Tomato',
+                          description: 'fresh organic tamatos',
+                          price: '150/- per kg',
+                          rating: 4,
+                        ),
+                        SizedBox(width: 16),
+                        MarketItem(
+                          image: 'lib/assets/products/tamato.png',
+                          title: 'Tomato',
+                          description: 'fresh organic tamatos',
+                          price: '150/- per kg',
+                          rating: 4,
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
+
               ),
             ),
           ],
@@ -166,50 +239,65 @@ class _ShopPageState extends State<ShopPage> {
 class MarketItem extends StatelessWidget {
   final String image;
   final String title;
+  final String description;
   final String price;
+  final double rating;
 
   const MarketItem({
     super.key,
     required this.image,
     required this.title,
     required this.price,
+    required this.rating,
+    required this.description,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.green[100],
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Row(
-          children: [
-            Image.asset(
-              image,
-              height: 80,
-              width: 80,
-            ),
-            Column(
-              children: [
-                const SizedBox(height: 8),
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+    final double screenWidth= MediaQuery.of(context).size.width;
+    return SizedBox(
+      height: 130,
+      width: screenWidth*0.25,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            child: Image.asset(image,),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(title,style: TextStyle(fontSize: 10,fontWeight: FontWeight.bold),),
+              Text(price,style: TextStyle(fontSize: 10,fontWeight: FontWeight.bold),)
+            ],
+          ),
+          Align(
+              alignment:Alignment.centerLeft,
+              child: Text(description,style: TextStyle(color: Colors.black.withOpacity(0.5),),softWrap: true,)),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                child: StarRating(
+                  length: 5,
+                  rating: rating,
+                  starSize: 15,
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  price,
-                  style: const TextStyle(fontSize: 14),
-                ),
-              ],
-            ),
-          ],
-        ),
+              ),
+
+              ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child:Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10,vertical: 2),
+                  color: themeColor,
+                    child: Text('Buy',style: TextStyle(color: Colors.white),))
+              )
+            ],
+          ),
+
+
+        ],
       ),
     );
   }
@@ -217,275 +305,73 @@ class MarketItem extends StatelessWidget {
 
 class CategoryItem extends StatelessWidget {
   final String image;
+  final String name;
 
-  const CategoryItem({super.key, required this.image});
 
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Image.asset(image),
-      ),
-    );
-  }
-}
-
-class ScrollableAdWidget extends StatefulWidget {
-  final List<Widget> ads;
-  final double height;
-
-  const ScrollableAdWidget({
-    super.key,
-    required this.ads,
-    this.height = 100.0,
-  });
-
-  @override
-  State<ScrollableAdWidget> createState() => _ScrollableAdWidgetState();
-}
-
-class _ScrollableAdWidgetState extends State<ScrollableAdWidget> {
-  PageController? _pageController;
-
-  @override
-  void initState() {
-    super.initState();
-    _pageController = PageController(viewportFraction: 0.8);
-  }
-
-  @override
-  void dispose() {
-    _pageController?.dispose();
-    super.dispose();
-  }
+  const CategoryItem({super.key, required this.image, required this.name});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: widget.height,
-      child: PageView.builder(
-        controller: _pageController,
-        itemCount: widget.ads.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5.0),
-            child: Transform.scale(
-              scale: index == _pageController!.page!
-                  ? 1.0
-                  : 0.9, // Scale down inactive ads
-              child: widget.ads[index],
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
-
-final List<Widget> ads = [
-  Container(
-    padding: const EdgeInsets.all(8),
-    color: Colors.green,
-    child: Row(
+    return Row(
       children: [
-        const Column(
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              "Discount",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+            CircleAvatar(
+              radius: 30,
+              backgroundImage: AssetImage(image),
+              backgroundColor: Colors.transparent,
             ),
-            Text(
-              "25%",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Text(
-              "All vegetables & Fruits",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-              ),
-            ),
+            Text(name),
           ],
         ),
-        Image.asset('lib/assets/ads1.png'),
+        SizedBox(width: 10,)
       ],
-    ),
-  ),
-  Expanded(
-    child: Container(
-      padding: const EdgeInsets.all(8),
-      color: Colors.green,
-      child: Row(
-        children: [
-          const Column(
-            children: [
-              Text(
-                "Discount",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                "25%",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                "All vegetables & Fruits",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                ),
-              ),
-            ],
-          ),
-          Image.asset('lib/assets/ads1.png')
-        ],
-      ),
-    ),
-  ),
-  Expanded(
-    child: Container(
-      padding: const EdgeInsets.all(8),
-      color: Colors.green,
-      child: Row(
-        children: [
-          const Column(
-            children: [
-              Text(
-                "Discount",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                "25%",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 20,),
-              Text(
-                "All vegetables & Fruits",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                ),
-              ),
-            ],
-          ),
-          Image.asset('lib/assets/ads1.png')
-        ],
-      ),
-    ),
-  ),
-  Expanded(
-    child: Container(
-      padding: const EdgeInsets.all(8),
-      color: Colors.green,
-      child: Row(
-        children: [
-          const Column(
-            children: [
-              Text(
-                "Discount",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                "25%",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                "All vegetables & Fruits",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                ),
-              ),
-            ],
-          ),
-          Image.asset('lib/assets/ads1.png')
-        ],
-      ),
-    ),
-  )
-];
-
-List<int> data = [
-  10,9,8,7,6,5,4,3,2,1
-];
-
-Widget _buildItemList(BuildContext context, int index){
-  return Expanded(
-    child: Container(
-      width: 400,
-      padding: const EdgeInsets.all(8),
-      color: themeColor,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Discount",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                "25%",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 20,),
-              Text(
-                "All vegetables & Fruits",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(width: 30,),
-          Image.asset('lib/assets/ads1.png')
-        ],
-      ),
-    ),
-  );
+    );
+  }
 }
+
+
+
+
+class SnapList extends StatefulWidget{
+  @override
+  State<SnapList> createState() => _SnapListState();
+}
+
+class _SnapListState extends State<SnapList> {
+  List<String> adList = [
+    'lib/assets/homepage.png',
+    'lib/assets/homepage.png',
+    'lib/assets/homepage.png',
+    'lib/assets/homepage.png'
+  ];
+  @override
+  Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    return Center(
+      child: SizedBox(
+        height: 200,
+        width: screenWidth,
+        child: ScrollSnapList(itemBuilder: _buildItemList,
+            shrinkWrap: true,
+            itemCount: adList.length,
+            itemSize:screenWidth ,
+            onItemFocus: (index){}
+        ),
+      ),
+    );
+  }
+  Widget _buildItemList(BuildContext context, int index) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    return Card(
+      elevation: 12,
+      child: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+        child: Image.asset(adList[index],fit: BoxFit.cover,),
+                )
+            );
+    }
+}
+
